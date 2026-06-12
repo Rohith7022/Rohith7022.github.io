@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rohith Ravindra Reddy – Financial Analytics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --navy:#0B1826;
+  --navy-2:#102030;
+  --navy-3:#152840;
+  --card:#112236;
+  --card-2:#162c44;
+  --teal:#00B4D8;
+  --teal-dim:rgba(0,180,216,0.12);
+  --teal-border:rgba(0,180,216,0.2);
+  --gold:#F0A500;
+  --gold-dim:rgba(240,165,0,0.1);
+  --text:#E8EFF5;
+  --text-2:#9BB8CF;
+  --text-3:#567391;
+  --border:rgba(255,255,255,0.07);
+  --font-display:'Syne',sans-serif;
+  --font-body:'DM Sans',sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+}
+
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--text);font-family:var(--font-body);font-size:16px;line-height:1.6;overflow-x:hidden}
+
+a{color:inherit;text-decoration:none}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:64px;background:rgba(11,24,38,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--font-display);font-weight:800;font-size:18px;letter-spacing:-0.5px;color:var(--text)}
+.nav-logo span{color:var(--teal)}
+.nav-links{display:flex;gap:2rem;font-size:14px;color:var(--text-2)}
+.nav-links a:hover{color:var(--teal);transition:color 0.2s}
+.nav-cta{background:var(--teal);color:var(--navy);font-family:var(--font-display);font-weight:600;font-size:13px;padding:8px 18px;border-radius:6px;letter-spacing:0.3px}
+.nav-cta:hover{background:#00c8f0}
+
+/* ── TICKER ── */
+.ticker-wrap{background:var(--navy-2);border-bottom:1px solid var(--border);height:36px;display:flex;align-items:center;overflow:hidden;margin-top:64px}
+.ticker-label{background:var(--teal);color:var(--navy);font-family:var(--font-mono);font-size:11px;font-weight:500;padding:0 14px;height:100%;display:flex;align-items:center;white-space:nowrap;flex-shrink:0;letter-spacing:1px}
+.ticker-track{display:flex;animation:ticker 28s linear infinite;white-space:nowrap;align-items:center}
+.ticker-item{font-family:var(--font-mono);font-size:11px;color:var(--text-2);padding:0 24px;letter-spacing:0.5px}
+.ticker-item span{color:var(--gold);margin-right:6px}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── HERO ── */
+.hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center;padding:6rem 5% 4rem;position:relative}
+.hero::before{content:'';position:absolute;top:0;right:0;width:50%;height:100%;background:radial-gradient(ellipse at 80% 30%, rgba(0,180,216,0.06) 0%, transparent 60%);pointer-events:none}
+.hero-eyebrow{font-family:var(--font-mono);font-size:12px;color:var(--teal);letter-spacing:2px;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:10px}
+.hero-eyebrow::before{content:'';display:inline-block;width:28px;height:1px;background:var(--teal)}
+.hero h1{font-family:var(--font-display);font-size:clamp(2.8rem,7vw,6rem);font-weight:800;line-height:1.0;letter-spacing:-2px;margin-bottom:1.5rem;max-width:900px}
+.hero h1 .name-line{display:block;color:var(--text)}
+.hero h1 .role-line{display:block;color:var(--teal);font-size:clamp(2rem,5vw,4.2rem)}
+.hero-sub{font-size:1.1rem;color:var(--text-2);max-width:540px;line-height:1.7;margin-bottom:2.5rem}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;align-items:center}
+.btn-primary{background:var(--teal);color:var(--navy);font-family:var(--font-display);font-weight:700;font-size:14px;padding:13px 28px;border-radius:6px;letter-spacing:0.3px;transition:background 0.2s,transform 0.15s}
+.btn-primary:hover{background:#00c8f0;transform:translateY(-1px)}
+.btn-secondary{border:1px solid var(--teal-border);color:var(--teal);font-family:var(--font-display);font-weight:600;font-size:14px;padding:12px 28px;border-radius:6px;transition:all 0.2s}
+.btn-secondary:hover{background:var(--teal-dim);border-color:var(--teal)}
+.social-links{display:flex;gap:16px;margin-left:8px}
+.social-links a{color:var(--text-3);font-size:13px;font-family:var(--font-mono);letter-spacing:0.5px;display:flex;align-items:center;gap:6px;transition:color 0.2s}
+.social-links a:hover{color:var(--teal)}
+
+/* ── STATS BAR ── */
+.stats-bar{background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:2.5rem 5%;display:grid;grid-template-columns:repeat(4,1fr);gap:1px}
+.stat-item{padding:0 2rem;text-align:center}
+.stat-item:first-child{padding-left:0;text-align:left}
+.stat-item:last-child{padding-right:0;text-align:right}
+.stat-number{font-family:var(--font-display);font-size:2.6rem;font-weight:800;color:var(--gold);letter-spacing:-1px;line-height:1}
+.stat-label{font-size:12px;color:var(--text-3);text-transform:uppercase;letter-spacing:1px;margin-top:6px;font-family:var(--font-mono)}
+
+/* ── SECTIONS ── */
+section{padding:5rem 5%}
+.section-eyebrow{font-family:var(--font-mono);font-size:11px;color:var(--teal);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:1rem}
+.section-title{font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.5rem);font-weight:700;letter-spacing:-0.5px;margin-bottom:3rem;color:var(--text)}
+
+/* ── ABOUT ── */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.about-text p{color:var(--text-2);line-height:1.8;margin-bottom:1.2rem}
+.about-text p strong{color:var(--text);font-weight:500}
+.about-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:1.5rem}
+.about-tag{background:var(--teal-dim);border:1px solid var(--teal-border);color:var(--teal);font-family:var(--font-mono);font-size:11px;padding:5px 12px;border-radius:20px;letter-spacing:0.5px}
+.about-facts{display:flex;flex-direction:column;gap:16px}
+.fact-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.2rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.fact-icon{font-size:20px;flex-shrink:0}
+.fact-text{font-size:14px;color:var(--text-2)}
+.fact-text strong{color:var(--text);font-weight:500;display:block;margin-bottom:2px}
+
+/* ── PROJECTS ── */
+#projects{background:var(--navy-2)}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem}
+.project-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.8rem;transition:border-color 0.25s,transform 0.2s;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--teal),transparent);opacity:0;transition:opacity 0.25s}
+.project-card:hover{border-color:var(--teal-border);transform:translateY(-3px)}
+.project-card:hover::before{opacity:1}
+.project-badge{font-family:var(--font-mono);font-size:10px;color:var(--teal);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:0.8rem}
+.project-card h3{font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:0.8rem;line-height:1.3}
+.project-card p{font-size:14px;color:var(--text-2);line-height:1.7;flex:1;margin-bottom:1.2rem}
+.project-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.4rem}
+.project-tag{background:rgba(255,255,255,0.05);color:var(--text-3);font-family:var(--font-mono);font-size:10px;padding:4px 10px;border-radius:4px;letter-spacing:0.3px}
+.project-link{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:11px;color:var(--teal);letter-spacing:0.5px;transition:gap 0.2s}
+.project-link:hover{gap:10px}
+.project-link::after{content:'→'}
+
+/* ── SKILLS ── */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem}
+.skill-group{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.6rem}
+.skill-group-title{font-family:var(--font-display);font-weight:700;font-size:13px;color:var(--teal);letter-spacing:1px;text-transform:uppercase;margin-bottom:1rem}
+.skill-list{display:flex;flex-direction:column;gap:10px}
+.skill-item{display:flex;align-items:center;justify-content:space-between;font-size:14px;color:var(--text-2)}
+.skill-bar{width:80px;height:3px;background:var(--border);border-radius:2px;overflow:hidden}
+.skill-fill{height:100%;background:var(--teal);border-radius:2px;transition:width 1s ease}
+
+/* ── CONTACT ── */
+#contact{background:var(--navy-2)}
+.contact-inner{max-width:640px}
+.contact-inner p{color:var(--text-2);font-size:1.05rem;line-height:1.8;margin-bottom:2rem}
+.contact-cards{display:flex;flex-direction:column;gap:12px;margin-bottom:2.5rem}
+.contact-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1rem 1.4rem;display:flex;align-items:center;gap:1rem;transition:border-color 0.2s}
+.contact-card:hover{border-color:var(--teal-border)}
+.contact-card-icon{font-size:16px;color:var(--teal);font-family:var(--font-mono);font-weight:500;width:24px;flex-shrink:0}
+.contact-card-label{font-size:12px;color:var(--text-3);font-family:var(--font-mono);letter-spacing:0.5px;margin-bottom:2px}
+.contact-card-value{font-size:14px;color:var(--text)}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:2rem 5%;display:flex;align-items:center;justify-content:space-between}
+.footer-name{font-family:var(--font-display);font-weight:700;font-size:14px;color:var(--text-3)}
+.footer-note{font-size:12px;color:var(--text-3);font-family:var(--font-mono)}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  .nav-links{display:none}
+  .stats-bar{grid-template-columns:repeat(2,1fr)}
+  .stat-item:nth-child(1){text-align:center}
+  .about-grid{grid-template-columns:1fr}
+  .projects-grid{grid-template-columns:1fr}
+  footer{flex-direction:column;gap:8px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">R<span>.</span>R<span>.</span>R</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="#contact" class="nav-cta">Hire Me</a>
+</nav>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-label">MARKETS</div>
+  <div class="ticker-track" aria-hidden="true">
+    <span class="ticker-item"><span>▲</span>GARCH Volatility Modeling</span>
+    <span class="ticker-item"><span>◆</span>Fama-French 3 & 4-Factor Models</span>
+    <span class="ticker-item"><span>▲</span>Value-at-Risk (VaR)</span>
+    <span class="ticker-item"><span>◆</span>ARIMA / SARIMA Forecasting</span>
+    <span class="ticker-item"><span>▲</span>Markowitz Portfolio Optimization</span>
+    <span class="ticker-item"><span>◆</span>CRSP–Compustat 1.04M Observations</span>
+    <span class="ticker-item"><span>▲</span>Python · R · Streamlit</span>
+    <span class="ticker-item"><span>◆</span>Bloomberg Terminal</span>
+    <span class="ticker-item"><span>▲</span>Carhart Momentum Factor</span>
+    <span class="ticker-item"><span>◆</span>WRDS · Power BI · SQL</span>
+    <!-- duplicate for seamless loop -->
+    <span class="ticker-item"><span>▲</span>GARCH Volatility Modeling</span>
+    <span class="ticker-item"><span>◆</span>Fama-French 3 & 4-Factor Models</span>
+    <span class="ticker-item"><span>▲</span>Value-at-Risk (VaR)</span>
+    <span class="ticker-item"><span>◆</span>ARIMA / SARIMA Forecasting</span>
+    <span class="ticker-item"><span>▲</span>Markowitz Portfolio Optimization</span>
+    <span class="ticker-item"><span>◆</span>CRSP–Compustat 1.04M Observations</span>
+    <span class="ticker-item"><span>▲</span>Python · R · Streamlit</span>
+    <span class="ticker-item"><span>◆</span>Bloomberg Terminal</span>
+    <span class="ticker-item"><span>▲</span>Carhart Momentum Factor</span>
+    <span class="ticker-item"><span>◆</span>WRDS · Power BI · SQL</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">MS Financial Analytics · Virginia Commonwealth University</div>
+  <h1>
+    <span class="name-line">Rohith Ravindra</span>
+    <span class="name-line">Reddy.</span>
+    <span class="role-line">Quantitative Finance</span>
+  </h1>
+  <p class="hero-sub">I build quantitative models that turn messy financial data into clear answers — factor models, volatility forecasts, portfolio optimizations, and risk analytics from millions of market observations.</p>
+  <div class="hero-actions">
+    <a href="#projects" class="btn-primary">View Projects</a>
+    <a href="https://github.com/Rohith7022" target="_blank" class="btn-secondary">GitHub</a>
+    <div class="social-links">
+      <a href="mailto:ravindra.rohith@gmail.com">✉ Email</a>
+      <a href="https://linkedin.com/in/rohith-ravindra-reddy" target="_blank">in LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-number">7</div>
+    <div class="stat-label">Projects</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">1.04M+</div>
+    <div class="stat-label">Data Observations</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">3.80</div>
+    <div class="stat-label">GPA at VCU</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">85%</div>
+    <div class="stat-label">Variance Explained</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-eyebrow">About Me</div>
+  <div class="about-grid">
+    <div class="about-text">
+      <div class="section-title">Turning data into<br>financial clarity.</div>
+      <p>I'm a <strong>Financial Analytics graduate student at VCU</strong> (GPA 3.80/4.0) with a background in engineering and an MBA in Finance from Christ University — a combination that means I approach financial problems with both quantitative rigor and business intuition.</p>
+      <p>My work sits at the intersection of <strong>empirical asset pricing, statistical modeling, and applied data science</strong>. I've processed over 1 million stock-month observations, built factor models that replicate landmark academic papers, and developed tools that make complex financial analysis accessible.</p>
+      <p>I'm actively seeking full-time roles in <strong>quantitative research, financial analytics, and data-driven finance</strong>.</p>
+      <div class="about-tags">
+        <span class="about-tag">Python</span>
+        <span class="about-tag">R</span>
+        <span class="about-tag">SQL</span>
+        <span class="about-tag">GARCH</span>
+        <span class="about-tag">ARIMA</span>
+        <span class="about-tag">VaR</span>
+        <span class="about-tag">Streamlit</span>
+        <span class="about-tag">Power BI</span>
+        <span class="about-tag">Bloomberg</span>
+        <span class="about-tag">WRDS</span>
+        <span class="about-tag">CRSP</span>
+        <span class="about-tag">Excel</span>
+      </div>
+    </div>
+    <div class="about-facts">
+      <div class="fact-card">
+        <div class="fact-icon">🎓</div>
+        <div class="fact-text">
+          <strong>MS Business – Financial Analytics</strong>
+          Virginia Commonwealth University · GPA 3.80/4.0
+        </div>
+      </div>
+      <div class="fact-card">
+        <div class="fact-icon">🎓</div>
+        <div class="fact-text">
+          <strong>MBA – Finance</strong>
+          Christ University · GPA 3.44/4.0
+        </div>
+      </div>
+      <div class="fact-card">
+        <div class="fact-icon">📊</div>
+        <div class="fact-text">
+          <strong>WRDS / CRSP Research Access</strong>
+          Wharton Research Data Services — institutional-grade financial data
+        </div>
+      </div>
+      <div class="fact-card">
+        <div class="fact-icon">💡</div>
+        <div class="fact-text">
+          <strong>Engineering Background</strong>
+          Analytical foundation that drives rigorous, systematic problem-solving
+        </div>
+      </div>
+      <div class="fact-card">
+        <div class="fact-icon">📍</div>
+        <div class="fact-text">
+          <strong>Richmond, Virginia</strong>
+          Open to roles nationwide · available immediately
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-eyebrow">Selected Work</div>
+  <div class="section-title">Projects & Research</div>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-badge">★ Featured</div>
+      <h3>Stock Analyzer – Financial Analytics Dashboard</h3>
+      <p>End-to-end interactive web application built from scratch. Features GARCH(1,1) volatility modeling, historical Value-at-Risk estimation, MA20/MA50 trend overlays, and real-time equity data — all surfaced in a deployable Streamlit dashboard.</p>
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">Streamlit</span>
+        <span class="project-tag">GARCH</span>
+        <span class="project-tag">VaR</span>
+        <span class="project-tag">arch</span>
+        <span class="project-tag">yfinance</span>
+      </div>
+      <a href="https://github.com/Rohith7022/stock-analyzer-app" target="_blank" class="project-link">View on GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-badge">VCU · FIRE 691</div>
+      <h3>Fama-French Factor Models (FF3 & Carhart FF4)</h3>
+      <p>Reproduced Fama & French (1992) Tables 1–3 within tolerance using 1.04M+ CRSP-Compustat stock-month observations (1962–2025). Built SMB, HML, and MOM factors from scratch with precise date alignment to eliminate look-ahead bias.</p>
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">CRSP</span>
+        <span class="project-tag">Compustat</span>
+        <span class="project-tag">WRDS</span>
+        <span class="project-tag">pandas</span>
+        <span class="project-tag">Colab</span>
+      </div>
+      <a href="https://github.com/Rohith7022/fama-french-factor-models" target="_blank" class="project-link">View on GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-badge">VCU · FIRE 691</div>
+      <h3>Momentum (UMD) Factor Construction</h3>
+      <p>Implemented Carhart (1997) momentum factor using 6 size × momentum portfolios. Validated that the standard (12,2) window is empirically optimal (Sharpe 0.507) versus 4 alternative windows. Achieved annualized MOM return of 7.00%.</p>
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">CRSP</span>
+        <span class="project-tag">Carhart 1997</span>
+        <span class="project-tag">pandas</span>
+        <span class="project-tag">matplotlib</span>
+      </div>
+      <a href="https://github.com/Rohith7022/momentum-umd-factor" target="_blank" class="project-link">View on GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-badge">VCU · FIRE 691</div>
+      <h3>ARK ETF Quantitative Performance Analysis</h3>
+      <p>Evaluated ARKK, ARKW, ARKG, ARKQ, and ARKF using Carhart 4-factor alpha, FF5 alpha, realized alpha, Sharpe ratio, appraisal ratio, and R². Rolling 36-month windows reveal whether fund outperformance is persistent or driven by market cycles.</p>
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">statsmodels</span>
+        <span class="project-tag">CRSP</span>
+        <span class="project-tag">FF5</span>
+        <span class="project-tag">Rolling OLS</span>
+      </div>
+      <a href="https://github.com/Rohith7022/ark-etf-performance-analysis" target="_blank" class="project-link">View on GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-badge">VCU · FIRE 540</div>
+      <h3>Financial Time Series Forecasting</h3>
+      <p>Applied ARIMA, SARIMA, and Holt-Winters models to 5-year daily price data across 6 diversified equities. Achieved 85% variance explained with RMSE below 2.5%. Cross-stock analysis surfaces sector-specific seasonality and volatility clustering.</p>
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">ARIMA</span>
+        <span class="project-tag">SARIMA</span>
+        <span class="project-tag">Holt-Winters</span>
+        <span class="project-tag">statsmodels</span>
+      </div>
+      <a href="https://github.com/Rohith7022/financial-time-series-forecasting" target="_blank" class="project-link">View on GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-badge">VCU · FIRE 691</div>
+      <h3>Portfolio Optimization – Efficient Frontier</h3>
+      <p>Built a Markowitz mean-variance optimization framework from scratch. Monte Carlo simulation of 10,000+ portfolios maps the efficient frontier. Scipy optimization identifies the minimum-variance and maximum Sharpe Ratio allocations.</p>
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">scipy</span>
+        <span class="project-tag">Markowitz</span>
+        <span class="project-tag">Monte Carlo</span>
+        <span class="project-tag">yfinance</span>
+      </div>
+      <a href="https://github.com/Rohith7022/portfolio-optimization" target="_blank" class="project-link">View on GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-badge">VCU · FIRE 691</div>
+      <h3>Mutual Fund Performance Analysis</h3>
+      <p>Large-scale fund evaluation using CRSP Mutual Fund Database (2005–2025). Applied FF5 + momentum model with rolling 36-month windows to assess alpha persistence, factor stability, and whether active management adds value after expenses.</p>
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">CRSP</span>
+        <span class="project-tag">FF5</span>
+        <span class="project-tag">pandas</span>
+        <span class="project-tag">statsmodels</span>
+      </div>
+      <a href="https://github.com/Rohith7022/mutual-fund-performance-analysis" target="_blank" class="project-link">View on GitHub</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-eyebrow">Capabilities</div>
+  <div class="section-title">Skills & Tools</div>
+  <div class="skills-grid">
+
+    <div class="skill-group">
+      <div class="skill-group-title">Quantitative Methods</div>
+      <div class="skill-list">
+        <div class="skill-item"><span>GARCH Modeling</span><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
+        <div class="skill-item"><span>ARIMA / SARIMA</span><div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div></div>
+        <div class="skill-item"><span>Factor Models (FF3/FF5)</span><div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div></div>
+        <div class="skill-item"><span>Value-at-Risk</span><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
+        <div class="skill-item"><span>Portfolio Optimization</span><div class="skill-bar"><div class="skill-fill" style="width:87%"></div></div></div>
+        <div class="skill-item"><span>Monte Carlo Simulation</span><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-title">Programming & Data</div>
+      <div class="skill-list">
+        <div class="skill-item"><span>Python</span><div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div></div>
+        <div class="skill-item"><span>R</span><div class="skill-bar"><div class="skill-fill" style="width:82%"></div></div></div>
+        <div class="skill-item"><span>SQL</span><div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></div>
+        <div class="skill-item"><span>Pandas / NumPy</span><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
+        <div class="skill-item"><span>Statsmodels / Scipy</span><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
+        <div class="skill-item"><span>Google Colab</span><div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div></div>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-title">Finance Tools</div>
+      <div class="skill-list">
+        <div class="skill-item"><span>Bloomberg Terminal</span><div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div></div>
+        <div class="skill-item"><span>WRDS / CRSP</span><div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div></div>
+        <div class="skill-item"><span>Excel (Advanced)</span><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
+        <div class="skill-item"><span>Power BI</span><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
+        <div class="skill-item"><span>Streamlit</span><div class="skill-bar"><div class="skill-fill" style="width:82%"></div></div></div>
+        <div class="skill-item"><span>Tableau</span><div class="skill-bar"><div class="skill-fill" style="width:72%"></div></div></div>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-title">Certifications</div>
+      <div class="skill-list" style="gap:14px">
+        <div style="font-size:13px;color:var(--text-2);line-height:1.5">
+          <span style="color:var(--teal);font-family:var(--font-mono);font-size:11px">✓</span>&nbsp; Advanced Excel — Microsoft
+        </div>
+        <div style="font-size:13px;color:var(--text-2);line-height:1.5">
+          <span style="color:var(--teal);font-family:var(--font-mono);font-size:11px">✓</span>&nbsp; Power BI — Microsoft
+        </div>
+        <div style="font-size:13px;color:var(--text-2);line-height:1.5">
+          <span style="color:var(--teal);font-family:var(--font-mono);font-size:11px">✓</span>&nbsp; Business Analytics Simulation — Enparadigm
+        </div>
+        <div style="font-size:13px;color:var(--text-3);margin-top:8px;line-height:1.6">
+          Coursework: Derivatives, Risk Management, Fixed Income, Advanced Financial Analytics, Financial Modeling, Statistical Analysis & Modeling
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-eyebrow">Get In Touch</div>
+  <div class="contact-inner">
+    <div class="section-title">Let's work together.</div>
+    <p>I'm actively looking for full-time roles in quantitative finance, financial analytics, and data-driven investment research. If my work is relevant to what you're building, I'd love to talk.</p>
+    <div class="contact-cards">
+      <a href="mailto:ravindra.rohith@gmail.com" class="contact-card">
+        <div class="contact-card-icon">@</div>
+        <div>
+          <div class="contact-card-label">Email</div>
+          <div class="contact-card-value">ravindra.rohith@gmail.com</div>
+        </div>
+      </a>
+      <a href="https://linkedin.com/in/rohith-ravindra-reddy" target="_blank" class="contact-card">
+        <div class="contact-card-icon">in</div>
+        <div>
+          <div class="contact-card-label">LinkedIn</div>
+          <div class="contact-card-value">linkedin.com/in/rohith-ravindra-reddy</div>
+        </div>
+      </a>
+      <a href="https://github.com/Rohith7022" target="_blank" class="contact-card">
+        <div class="contact-card-icon">gh</div>
+        <div>
+          <div class="contact-card-label">GitHub</div>
+          <div class="contact-card-value">github.com/Rohith7022</div>
+        </div>
+      </a>
+    </div>
+    <a href="mailto:ravindra.rohith@gmail.com" class="btn-primary">Send me a message</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-name">Rohith Ravindra Reddy</div>
+  <div class="footer-note">MS Financial Analytics · Virginia Commonwealth University · Richmond, VA</div>
+</footer>
+
+</body>
+</html>
