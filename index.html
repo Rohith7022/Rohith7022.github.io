@@ -214,7 +214,7 @@ footer{border-top:1px solid var(--border);padding:2rem 5%;display:flex;align-ite
 <!-- STATS BAR -->
 <div class="stats-bar">
   <div class="stat-item">
-    <div class="stat-number">13</div>
+    <div class="stat-number">18</div>
     <div class="stat-label">Projects</div>
   </div>
   <div class="stat-item">
@@ -486,6 +486,76 @@ footer{border-top:1px solid var(--border);padding:2rem 5%;display:flex;align-ite
         <span class="project-tag">EDHEC</span>
       </div>
       <a href="https://github.com/Rohith7022/portfolio-optimization-r" target="_blank" class="project-link">View on GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-badge">VCU · FIRE 691 · Week 1</div>
+      <h3>Return Predictability – Dividend-Price Ratio</h3>
+      <p>Tested Cochrane/Goyal-Welch return predictability using lagged d/p ratio on CRSP data (1927–2024). Found near-zero short-run R² but 5-year cumulative R² of 8.41% (annual) and 7.55% (monthly) — confirming that predictability is exclusively a long-horizon phenomenon.</p>
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">CRSP</span>
+        <span class="project-tag">Goyal-Welch</span>
+        <span class="project-tag">OOS R²</span>
+        <span class="project-tag">Cochrane 2008</span>
+      </div>
+      <a href="https://github.com/Rohith7022/return-predictability" target="_blank" class="project-link">View on GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-badge">VCU · FIRE 691 · Week 2</div>
+      <h3>Time-Series Properties of Stock Returns</h3>
+      <p>Autocorrelation analysis, ARIMA/SARIMA model fitting, and Holt-Winters forecasting on CRSP monthly return data. Evaluated out-of-sample R² across 10+ predictors using Goyal-Welch (2008) extended framework at both annual and monthly frequency.</p>
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">ARIMA</span>
+        <span class="project-tag">SARIMA</span>
+        <span class="project-tag">statsmodels</span>
+        <span class="project-tag">CRSP</span>
+      </div>
+      <a href="https://github.com/Rohith7022/time-series-stock-return-properties" target="_blank" class="project-link">View on GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-badge">VCU · FIRE 691 · Weeks 3–5</div>
+      <h3>Fama &amp; French (1992) Cross-Sectional Replication</h3>
+      <p>Replicated FF (1992) Tables 1–3 within tolerance using 1.04M CRSP-Compustat observations (1962–2025). Constructed 25 size × B/M portfolios, confirmed size and value premia, and ran Fama-MacBeth cross-sectional regressions showing beta alone cannot explain the cross-section.</p>
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">CRSP</span>
+        <span class="project-tag">Compustat</span>
+        <span class="project-tag">Fama-MacBeth</span>
+        <span class="project-tag">Size/Value Premia</span>
+      </div>
+      <a href="https://github.com/Rohith7022/ff1992-cross-sectional-replication" target="_blank" class="project-link">View on GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-badge">VCU · FIRE 691 · Week 9</div>
+      <h3>Stock Price Jumps &amp; NLP Sentiment – BRK.B</h3>
+      <p>Detected all 7 extreme SPY jump days (Feb–Mar 2020 COVID crash) using Jeon-McCurdy-Zhao (2022) expanding-window Z-score. Predicted BRK.B jumps via logistic regression with FOMC dates, earnings filings, and Loughran-McDonald NLP sentiment from 48 SEC 8-K documents — achieving McFadden R²=0.50.</p>
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">NLP</span>
+        <span class="project-tag">Loughran-McDonald</span>
+        <span class="project-tag">SEC EDGAR</span>
+        <span class="project-tag">Logistic Regression</span>
+      </div>
+      <a href="https://github.com/Rohith7022/stock-price-jumps-nlp-sentiment" target="_blank" class="project-link">View on GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-badge">VCU · FIRE 691 · Weeks 10–11</div>
+      <h3>Portfolio Attribution &amp; Active Share – QQQ vs SPY</h3>
+      <p>Measured QQQ's active share vs. SPY across 108 months (2016–2025): average 62.88%, decomposed into within-sector (51.62%) and sector-level (34.33%) components. Brinson attribution reveals 2023–2024 AI-driven outperformance generated 30%+ active returns from a declining 55–65% active share.</p>
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">Active Share</span>
+        <span class="project-tag">Brinson Attribution</span>
+        <span class="project-tag">QQQ</span>
+        <span class="project-tag">Cremers-Petajisto</span>
+      </div>
+      <a href="https://github.com/Rohith7022/portfolio-attribution-active-share" target="_blank" class="project-link">View on GitHub</a>
     </div>
   </div>
 </section>
