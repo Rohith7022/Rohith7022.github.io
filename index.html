@@ -5,492 +5,886 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rohith Ravindra Reddy – Financial Analytics</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --white:#FFFFFF;
-  --sidebar:#F7F8FA;
-  --text:#111827;
-  --text-2:#6B7280;
-  --text-3:#9CA3AF;
-  --navy:#1E3A5F;
-  --gold:#B8962E;
-  --gold-light:#FBF6E9;
-  --border:#E5E7EB;
-  --accent-bg:#EEF3FA;
-  --sidebar-w:268px;
-  --font-display:'Cormorant Garamond',serif;
-  --font-body:'Inter',sans-serif;
-  --font-mono:'Space Mono',monospace;
+  --ivory:#F9F8F4;--black:#0F0F0F;--navy:#1E3A5F;--gold:#D4AF37;
+  --gold-dim:rgba(212,175,55,0.12);--gold-border:rgba(212,175,55,0.3);
+  --grey:#808080;--text:#1A1A1A;--text-2:#555;--text-3:#999;
+  --border:#E8E4D8;--white:#FFFFFF;--card:#FFFFFF;
+  --fd:'Cormorant Garamond',serif;--fb:'Inter',sans-serif;--fm:'Space Mono',monospace;
 }
 html{scroll-behavior:smooth}
-body{background:var(--white);color:var(--text);font-family:var(--font-body);font-size:15px;line-height:1.6;overflow-x:hidden}
+body{background:var(--ivory);color:var(--text);font-family:var(--fb);font-size:15px;line-height:1.6;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
 
-/* ── SIDEBAR ── */
-.sidebar{position:fixed;left:0;top:0;width:var(--sidebar-w);height:100vh;background:var(--sidebar);border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;padding:2.5rem 1.5rem;z-index:100;overflow-y:auto}
-.sidebar-avatar{width:92px;height:92px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:26px;font-weight:600;color:white;letter-spacing:-1px;margin-bottom:1.2rem;position:relative;flex-shrink:0;transition:transform 0.3s}
-.sidebar-avatar:hover{transform:scale(1.04)}
-.sidebar-avatar .avatar-badge{position:absolute;bottom:4px;right:4px;width:14px;height:14px;background:#22C55E;border-radius:50%;border:2px solid var(--sidebar)}
-.sidebar-name{font-family:var(--font-display);font-size:1.2rem;font-weight:700;text-align:center;line-height:1.2;margin-bottom:4px;color:var(--text)}
-.sidebar-title{font-size:11px;color:var(--text-3);text-align:center;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:2rem;font-weight:500}
-.sidebar-divider{width:32px;height:2px;background:var(--gold);border-radius:1px;margin-bottom:2rem;flex-shrink:0}
-nav{width:100%;margin-bottom:auto}
-nav a{display:flex;align-items:center;gap:10px;padding:9px 12px;font-size:12px;letter-spacing:1.2px;text-transform:uppercase;font-weight:600;color:var(--text-2);border-radius:6px;transition:all 0.2s;margin-bottom:4px;position:relative}
-nav a .nav-dot{width:6px;height:6px;border-radius:50%;background:transparent;transition:background 0.2s;flex-shrink:0}
-nav a:hover{color:var(--navy);background:var(--accent-bg)}
-nav a:hover .nav-dot{background:var(--navy)}
-nav a.active{color:var(--navy);background:var(--accent-bg)}
-nav a.active .nav-dot{background:var(--gold)}
-.sidebar-socials{display:flex;gap:10px;margin-top:2rem;flex-wrap:wrap;justify-content:center}
-.sidebar-socials a{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:var(--white);display:flex;align-items:center;justify-content:center;font-size:11px;font-family:var(--font-mono);color:var(--text-2);transition:all 0.2s;font-weight:700}
-.sidebar-socials a:hover{background:var(--navy);color:white;border-color:var(--navy)}
-.sidebar-footer{margin-top:1.5rem;font-size:10px;color:var(--text-3);text-align:center;letter-spacing:0.5px}
+/* NAV */
+#nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 6%;height:60px;display:flex;align-items:center;justify-content:space-between;transition:all 0.3s}
+#nav.scrolled{background:rgba(15,15,15,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(212,175,55,0.15)}
+.nav-logo{font-family:var(--fd);font-size:20px;font-weight:700;color:white;letter-spacing:-0.5px}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:2rem}
+.nav-links a{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;color:rgba(255,255,255,0.7);transition:color 0.2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--black);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:9px 20px;border-radius:2px;transition:all 0.2s}
+.nav-cta:hover{background:#E8C545;transform:translateY(-1px)}
 
-/* ── MAIN ── */
-main{margin-left:var(--sidebar-w);min-height:100vh}
-section{padding:5rem 5% 4rem 6%}
-section:nth-child(even){background:#FDFDFD}
+/* HERO */
+#hero{position:relative;min-height:100vh;background:var(--black);display:flex;align-items:center;overflow:hidden}
+#hero-canvas{position:absolute;inset:0;opacity:0.4}
+.hero-inner{position:relative;z-index:2;width:100%;max-width:1200px;margin:0 auto;padding:0 6%;display:grid;grid-template-columns:1fr 1.2fr;gap:5rem;align-items:center;padding-top:60px}
+.hero-left{display:flex;flex-direction:column;align-items:center}
+.hero-avatar-ring{width:260px;height:260px;border-radius:50%;border:1px solid var(--gold-border);display:flex;align-items:center;justify-content:center;position:relative;animation:ringPulse 3s ease-in-out infinite}
+.hero-avatar-ring::before{content:'';position:absolute;inset:-8px;border-radius:50%;border:1px solid rgba(212,175,55,0.15);animation:ringPulse 3s ease-in-out infinite 0.5s}
+.hero-avatar-ring::after{content:'';position:absolute;inset:-18px;border-radius:50%;border:1px solid rgba(212,175,55,0.07);animation:ringPulse 3s ease-in-out infinite 1s}
+@keyframes ringPulse{0%,100%{opacity:0.6;transform:scale(1)}50%{opacity:1;transform:scale(1.02)}}
+.hero-avatar{width:220px;height:220px;border-radius:50%;background:linear-gradient(135deg,#1E3A5F 0%,#0F2340 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--fd);font-size:48px;font-weight:700;color:rgba(255,255,255,0.2);letter-spacing:-2px;border:2px solid rgba(212,175,55,0.2)}
+.hero-avatar-label{font-family:var(--fm);font-size:9px;color:rgba(212,175,55,0.5);letter-spacing:2px;margin-top:8px;text-transform:uppercase}
+.hero-right{padding:2rem 0}
+.hero-eyebrow{font-family:var(--fm);font-size:10px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:1.4rem;display:flex;align-items:center;gap:10px}
+.hero-eyebrow::before{content:'';display:block;width:30px;height:1px;background:var(--gold)}
+.hero h1{font-family:var(--fd);font-size:clamp(3rem,5vw,5.5rem);font-weight:600;color:white;line-height:0.95;letter-spacing:-2px;margin-bottom:1.6rem}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-tagline{font-size:14px;color:rgba(255,255,255,0.5);letter-spacing:2px;text-transform:uppercase;margin-bottom:1.4rem;font-weight:300}
+.hero-bio{font-size:15px;color:rgba(255,255,255,0.65);line-height:1.8;max-width:480px;margin-bottom:2.4rem;font-weight:300}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:3rem}
+.btn-gold{background:var(--gold);color:var(--black);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:13px 28px;border-radius:2px;border:none;cursor:pointer;transition:all 0.2s}
+.btn-gold:hover{background:#E8C545;transform:translateY(-1px)}
+.btn-outline{border:1px solid rgba(255,255,255,0.3);color:rgba(255,255,255,0.8);font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:12px 28px;border-radius:2px;cursor:pointer;transition:all 0.2s;background:transparent}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;border-top:1px solid rgba(255,255,255,0.1);padding-top:2rem}
+.hstat-num{font-family:var(--fd);font-size:2rem;font-weight:700;color:var(--gold);line-height:1;letter-spacing:-1px}
+.hstat-label{font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:1px;text-transform:uppercase;margin-top:4px;font-family:var(--fm)}
 
-/* ── HERO ── */
-#home{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:6rem;padding-bottom:4rem;position:relative;overflow:hidden}
-.ghost-text{position:absolute;bottom:-20px;left:-10px;font-family:var(--font-display);font-size:clamp(100px,18vw,200px);font-weight:700;color:var(--navy);opacity:0.035;letter-spacing:-6px;line-height:1;pointer-events:none;user-select:none;white-space:nowrap}
-.hero-eyebrow{font-family:var(--font-mono);font-size:11px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:1.2rem;display:flex;align-items:center;gap:8px}
-.hero-eyebrow::before{content:'';display:inline-block;width:24px;height:1px;background:var(--gold)}
-.hero h1{font-family:var(--font-display);font-size:clamp(2.8rem,5.5vw,4.8rem);font-weight:600;line-height:1.0;letter-spacing:-1.5px;margin-bottom:1.4rem;color:var(--text)}
-.hero h1 em{font-style:normal;color:var(--navy)}
-.hero-sub{font-size:1rem;color:var(--text-2);max-width:500px;line-height:1.8;margin-bottom:2.4rem;font-weight:300}
-.hero-stats{display:flex;gap:2.5rem;margin-bottom:2.8rem;flex-wrap:wrap}
-.hero-stat{}
-.hero-stat-num{font-family:var(--font-display);font-size:2.2rem;font-weight:700;color:var(--navy);line-height:1;letter-spacing:-1px}
-.hero-stat-label{font-size:10px;color:var(--text-3);letter-spacing:1.5px;text-transform:uppercase;margin-top:3px;font-weight:500}
-.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;align-items:center}
-.btn-main{background:var(--navy);color:white;font-family:var(--font-body);font-weight:600;font-size:13px;padding:12px 26px;border-radius:4px;letter-spacing:0.5px;transition:all 0.2s}
-.btn-main:hover{background:#16304F;transform:translateY(-1px)}
-.btn-ghost{border:1.5px solid var(--border);color:var(--text);font-weight:500;font-size:13px;padding:11px 26px;border-radius:4px;transition:all 0.2s}
-.btn-ghost:hover{border-color:var(--navy);color:var(--navy)}
+/* SECTION COMMON */
+.sec{padding:6rem 6%}
+.sec-dark{background:var(--black);color:white}
+.sec-ivory{background:var(--ivory)}
+.sec-white{background:var(--white)}
+.sec-label{font-family:var(--fm);font-size:10px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:0.6rem;display:flex;align-items:center;gap:8px}
+.sec-label::before{content:'';display:block;width:20px;height:1px;background:var(--gold)}
+.sec-title{font-family:var(--fd);font-size:clamp(2rem,3.5vw,3rem);font-weight:600;letter-spacing:-1px;margin-bottom:3rem;line-height:1.1}
+.sec-title-light{color:white}
+.max-w{max-width:1200px;margin:0 auto}
 
-/* ── SECTION HEADER ── */
-.sec-label{font-family:var(--font-mono);font-size:10px;color:var(--gold);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:0.6rem;display:flex;align-items:center;gap:8px}
-.sec-label::before{content:'';width:20px;height:1px;background:var(--gold);display:inline-block}
-.sec-title{font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.4rem);font-weight:600;letter-spacing:-0.5px;color:var(--text);margin-bottom:2.8rem;line-height:1.15}
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.about-photo{aspect-ratio:3/4;background:linear-gradient(135deg,var(--navy) 0%,#0F2340 100%);border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid var(--gold-border);position:relative;overflow:hidden}
+.about-photo::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.photo-monogram{font-family:var(--fd);font-size:80px;font-weight:700;color:rgba(212,175,55,0.15);letter-spacing:-4px;line-height:1}
+.photo-text{font-family:var(--fm);font-size:10px;color:rgba(212,175,55,0.4);letter-spacing:2px;margin-top:16px;text-align:center;text-transform:uppercase}
+.about-content p{color:var(--text-2);line-height:1.85;margin-bottom:1.2rem;font-weight:300}
+.about-content p strong{color:var(--text);font-weight:600}
+.about-badges{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:2rem}
+.about-badge{background:var(--ivory);border:1px solid var(--border);border-left:3px solid var(--gold);padding:10px 14px;border-radius:0 4px 4px 0}
+.about-badge-icon{font-size:14px;margin-bottom:3px}
+.about-badge-text{font-size:12px;color:var(--text-2)}
+.about-badge-text strong{color:var(--text);display:block;margin-bottom:1px}
 
-/* ── ABOUT ── */
-.about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:4rem;align-items:start}
-.about-body p{color:var(--text-2);line-height:1.85;margin-bottom:1.1rem;font-weight:300;font-size:15px}
-.about-body p strong{color:var(--text);font-weight:600}
-.about-photo-box{background:var(--accent-bg);border-radius:12px;aspect-ratio:4/5;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid var(--border);position:relative;overflow:hidden;cursor:pointer}
-.photo-placeholder{text-align:center;padding:2rem}
-.photo-icon{width:56px;height:56px;border-radius:50%;background:var(--navy);opacity:0.15;margin:0 auto 1rem}
-.photo-label{font-size:12px;color:var(--text-3);letter-spacing:0.5px}
-.photo-hint{font-family:var(--font-mono);font-size:10px;color:var(--gold);margin-top:6px;letter-spacing:1px}
-.edu-cards{display:flex;flex-direction:column;gap:10px;margin-top:1.6rem}
-.edu-card{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:1rem 1.2rem;border-left:3px solid var(--navy)}
-.edu-card h4{font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px}
-.edu-card p{font-size:12px;color:var(--text-2)}
-.edu-card span{font-family:var(--font-mono);font-size:10px;color:var(--gold);letter-spacing:0.5px}
+/* EDUCATION */
+.timeline{position:relative;padding-left:2rem}
+.timeline::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:1px;background:linear-gradient(to bottom,var(--gold),rgba(212,175,55,0.1))}
+.tl-item{position:relative;padding:0 0 2.5rem 2rem}
+.tl-dot{position:absolute;left:-2.5rem;top:6px;width:12px;height:12px;border-radius:50%;background:var(--gold);border:2px solid var(--black);box-shadow:0 0 0 3px rgba(212,175,55,0.2)}
+.tl-item:last-child .tl-dot{width:16px;height:16px;left:-2.65rem;top:4px;box-shadow:0 0 0 4px rgba(212,175,55,0.25),0 0 20px rgba(212,175,55,0.2)}
+.tl-year{font-family:var(--fm);font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:1px;margin-bottom:6px}
+.tl-school{font-family:var(--fd);font-size:1.3rem;font-weight:600;color:white;margin-bottom:2px;line-height:1.2}
+.tl-degree{font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:6px}
+.tl-score{display:inline-block;font-family:var(--fm);font-size:10px;color:var(--gold);background:var(--gold-dim);border:1px solid var(--gold-border);padding:3px 10px;border-radius:2px;letter-spacing:0.5px}
 
-/* ── PROJECTS ── */
-#projects{background:var(--white)}
-.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.4rem}
-.proj-card{border:1px solid var(--border);border-radius:10px;padding:1.6rem;transition:all 0.25s;background:var(--white);display:flex;flex-direction:column;cursor:default}
-.proj-card:hover{border-color:var(--navy);box-shadow:0 8px 32px rgba(30,58,95,0.09);transform:translateY(-3px)}
-.proj-course{font-family:var(--font-mono);font-size:9.5px;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:0.6rem;font-weight:700}
-.proj-card h3{font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:0.6rem;line-height:1.3}
-.proj-card p{font-size:13px;color:var(--text-2);line-height:1.7;flex:1;margin-bottom:1.2rem;font-weight:300}
+/* EXPERTISE */
+.expertise-tabs{display:flex;gap:0;margin-bottom:2.5rem;border:1px solid var(--border);border-radius:4px;overflow:hidden;width:fit-content}
+.tab-btn{padding:10px 24px;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;background:transparent;border:none;cursor:pointer;color:var(--text-3);transition:all 0.2s;border-right:1px solid var(--border)}
+.tab-btn:last-child{border-right:none}
+.tab-btn.active{background:var(--navy);color:white}
+.expertise-panel{display:none;animation:fadeIn 0.3s ease}
+.expertise-panel.active{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.skill-chip{background:var(--white);border:1px solid var(--border);border-radius:4px;padding:10px 14px;font-size:13px;color:var(--text-2);transition:all 0.2s;display:flex;align-items:center;gap:8px}
+.skill-chip::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.skill-chip:hover{border-color:var(--gold);color:var(--text);transform:translateX(3px)}
+
+/* EXPERIENCE */
+.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.exp-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:2rem;position:relative;overflow:hidden;transition:all 0.3s}
+.exp-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent)}
+.exp-card:hover{border-color:var(--gold-border);background:rgba(212,175,55,0.04)}
+.exp-role{font-family:var(--fd);font-size:1.3rem;font-weight:600;color:white;margin-bottom:4px}
+.exp-company{font-size:13px;color:var(--gold);margin-bottom:4px}
+.exp-period{font-family:var(--fm);font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:1px;margin-bottom:1.2rem}
+.exp-duties{list-style:none;display:flex;flex-direction:column;gap:6px}
+.exp-duties li{font-size:13px;color:rgba(255,255,255,0.6);padding-left:14px;position:relative;line-height:1.5}
+.exp-duties li::before{content:'→';position:absolute;left:0;color:var(--gold);font-size:11px}
+
+/* PROJECTS */
+.proj-filters{display:flex;gap:8px;margin-bottom:2.5rem;flex-wrap:wrap}
+.pf-btn{padding:7px 18px;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--border);border-radius:2px;cursor:pointer;color:var(--text-3);transition:all 0.2s}
+.pf-btn.active,.pf-btn:hover{background:var(--navy);color:white;border-color:var(--navy)}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem}
+.proj-card{background:var(--white);border:1px solid var(--border);border-radius:4px;padding:1.8rem;display:flex;flex-direction:column;transition:all 0.25s;position:relative;overflow:hidden}
+.proj-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--navy),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform 0.3s}
+.proj-card:hover{box-shadow:0 12px 40px rgba(30,58,95,0.1);transform:translateY(-3px);border-color:rgba(30,58,95,0.2)}
+.proj-card:hover::after{transform:scaleX(1)}
+.proj-card.featured{border-color:var(--gold-border);background:linear-gradient(135deg,#FFFDF5 0%,#FEF9E7 100%)}
+.proj-card.featured::after{background:linear-gradient(90deg,var(--gold),#F0C040)}
+.proj-badge{font-family:var(--fm);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:0.7rem;font-weight:700}
+.proj-badge.gold{color:var(--gold)}
+.proj-badge.navy{color:var(--navy)}
+.proj-card h3{font-family:var(--fd);font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:0.7rem;line-height:1.25}
+.proj-card p{font-size:13px;color:var(--text-2);line-height:1.75;flex:1;margin-bottom:1rem;font-weight:300}
+.proj-result{display:inline-block;background:rgba(30,58,95,0.07);border:1px solid rgba(30,58,95,0.12);border-radius:2px;padding:4px 10px;font-family:var(--fm);font-size:10px;color:var(--navy);margin-bottom:1rem;letter-spacing:0.3px}
 .proj-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:1.2rem}
-.proj-tag{background:#F3F4F6;color:#6B7280;font-family:var(--font-mono);font-size:9.5px;padding:3px 8px;border-radius:3px;letter-spacing:0.3px}
-.proj-link{font-family:var(--font-mono);font-size:10.5px;color:var(--navy);letter-spacing:0.5px;display:inline-flex;align-items:center;gap:5px;font-weight:700;transition:gap 0.2s}
+.proj-tag{background:#F3F4F6;color:#6B7280;font-family:var(--fm);font-size:9.5px;padding:3px 8px;border-radius:2px}
+.proj-link{font-family:var(--fm);font-size:10.5px;color:var(--navy);display:inline-flex;align-items:center;gap:5px;font-weight:700;letter-spacing:0.5px;transition:gap 0.2s}
 .proj-link:hover{gap:9px}
 .proj-link::after{content:'↗'}
-.proj-featured{border-color:rgba(184,150,46,0.4);background:linear-gradient(135deg,#FFFDF5 0%,#FDFBF0 100%)}
-.proj-featured .proj-course{color:var(--gold)}
+.proj-hidden{display:none}
 
-/* ── SKILLS ── */
-#skills{background:#FDFDFD}
-.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.2rem}
-.skill-group{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:1.4rem}
-.skill-group-title{font-size:10px;font-family:var(--font-mono);letter-spacing:2px;text-transform:uppercase;color:var(--navy);margin-bottom:1rem;font-weight:700}
-.skill-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.skill-name{font-size:13px;color:var(--text-2);font-weight:400}
-.skill-bar-wrap{width:72px;height:3px;background:var(--border);border-radius:2px;overflow:hidden}
-.skill-bar-fill{height:100%;background:var(--navy);border-radius:2px;width:0;transition:width 1.2s cubic-bezier(0.16,1,0.3,1)}
+/* RESEARCH */
+.research-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1px;border:1px solid rgba(255,255,255,0.08);border-radius:4px;overflow:hidden}
+.research-item{background:rgba(255,255,255,0.03);padding:1.8rem 1.5rem;border-right:1px solid rgba(255,255,255,0.05);border-bottom:1px solid rgba(255,255,255,0.05);transition:background 0.2s}
+.research-item:hover{background:rgba(212,175,55,0.06)}
+.ri-num{font-family:var(--fd);font-size:2.5rem;font-weight:700;color:rgba(212,175,55,0.2);line-height:1;margin-bottom:0.5rem}
+.ri-title{font-size:13px;font-weight:500;color:rgba(255,255,255,0.8);line-height:1.4}
 
-/* ── CONTACT ── */
-.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
-.contact-intro p{color:var(--text-2);line-height:1.85;margin-bottom:1.4rem;font-weight:300}
-.contact-cards{display:flex;flex-direction:column;gap:10px}
-.contact-card{display:flex;align-items:center;gap:1rem;padding:1rem 1.3rem;background:var(--white);border:1px solid var(--border);border-radius:8px;transition:all 0.2s}
-.contact-card:hover{border-color:var(--navy);background:var(--accent-bg)}
-.contact-icon{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--navy);width:28px;flex-shrink:0}
-.contact-label{font-size:10px;color:var(--text-3);letter-spacing:1px;text-transform:uppercase;margin-bottom:2px}
-.contact-val{font-size:13px;color:var(--text);font-weight:500}
+/* ACHIEVEMENTS */
+.ach-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem}
+.ach-card{background:var(--white);border:1px solid var(--border);border-radius:4px;padding:1.8rem;text-align:center;transition:all 0.25s}
+.ach-card:hover{border-color:var(--gold-border);transform:translateY(-3px);box-shadow:0 8px 24px rgba(212,175,55,0.1)}
+.ach-icon{font-size:2.2rem;margin-bottom:0.8rem}
+.ach-title{font-family:var(--fd);font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:4px}
+.ach-sub{font-size:12px;color:var(--text-3)}
 
-/* ── FOOTER ── */
-footer{margin-left:0;border-top:1px solid var(--border);padding:1.5rem 6%;display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--text-3);font-family:var(--font-mono);background:var(--sidebar)}
-.footer-name{font-weight:700;letter-spacing:0.5px;color:var(--text-2)}
+/* SHADOW AI */
+#shadow-ai{background:var(--black);position:relative;overflow:hidden}
+#shadow-ai::before{content:'SHADOW AI';position:absolute;bottom:-40px;left:-20px;font-family:var(--fd);font-size:18vw;font-weight:700;color:rgba(212,175,55,0.03);line-height:1;pointer-events:none;white-space:nowrap}
+.ai-inner{display:grid;grid-template-columns:1fr 1.4fr;gap:4rem;align-items:start}
+.ai-left{}
+.ai-orb-wrap{width:180px;height:180px;margin-bottom:2rem;position:relative}
+.ai-orb{width:100%;height:100%;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(212,175,55,0.4) 0%,rgba(30,58,95,0.6) 50%,rgba(15,15,15,0.8) 100%);box-shadow:0 0 60px rgba(212,175,55,0.2),0 0 120px rgba(30,58,95,0.3);animation:orbPulse 4s ease-in-out infinite}
+@keyframes orbPulse{0%,100%{box-shadow:0 0 60px rgba(212,175,55,0.2),0 0 120px rgba(30,58,95,0.3)}50%{box-shadow:0 0 80px rgba(212,175,55,0.35),0 0 140px rgba(30,58,95,0.4)}}
+.ai-label{font-family:var(--fm);font-size:9px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:0.5rem}
+.ai-title-text{font-family:var(--fd);font-size:2.2rem;font-weight:600;color:white;line-height:1.15;margin-bottom:1rem}
+.ai-desc{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.75;margin-bottom:1.8rem;font-weight:300}
+.ai-chips{display:flex;flex-wrap:wrap;gap:8px}
+.ai-chip{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:7px 14px;font-size:11px;color:rgba(255,255,255,0.7);cursor:pointer;transition:all 0.2s;white-space:nowrap}
+.ai-chip:hover{background:var(--gold-dim);border-color:var(--gold-border);color:var(--gold)}
+.ai-right{}
+.chat-box{background:rgba(255,255,255,0.04);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1);border-radius:8px;overflow:hidden}
+.chat-header{padding:1rem 1.4rem;border-bottom:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;gap:10px}
+.chat-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);animation:dotBlink 2s ease-in-out infinite}
+@keyframes dotBlink{0%,100%{opacity:1}50%{opacity:0.3}}
+.chat-header-title{font-family:var(--fm);font-size:11px;color:rgba(255,255,255,0.6);letter-spacing:1.5px;text-transform:uppercase}
+.chat-messages{height:380px;overflow-y:auto;padding:1.4rem;display:flex;flex-direction:column;gap:1rem;scroll-behavior:smooth}
+.chat-messages::-webkit-scrollbar{width:4px}
+.chat-messages::-webkit-scrollbar-track{background:transparent}
+.chat-messages::-webkit-scrollbar-thumb{background:rgba(212,175,55,0.3);border-radius:2px}
+.msg{max-width:82%;display:flex;flex-direction:column;gap:4px}
+.msg.user{align-self:flex-end;align-items:flex-end}
+.msg.ai{align-self:flex-start;align-items:flex-start}
+.msg-bubble{padding:10px 14px;border-radius:8px;font-size:13px;line-height:1.65}
+.msg.user .msg-bubble{background:var(--navy);color:white;border-radius:8px 8px 2px 8px}
+.msg.ai .msg-bubble{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.85);border:1px solid rgba(255,255,255,0.08);border-radius:8px 8px 8px 2px}
+.msg-time{font-family:var(--fm);font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:0.5px}
+.typing-indicator{display:flex;gap:4px;align-items:center;padding:12px 14px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.08);border-radius:8px 8px 8px 2px;width:fit-content}
+.typing-dot{width:6px;height:6px;border-radius:50%;background:rgba(212,175,55,0.6);animation:typingDot 1.4s ease-in-out infinite}
+.typing-dot:nth-child(2){animation-delay:0.2s}
+.typing-dot:nth-child(3){animation-delay:0.4s}
+@keyframes typingDot{0%,60%,100%{transform:translateY(0);opacity:0.4}30%{transform:translateY(-6px);opacity:1}}
+.chat-input-row{padding:1rem 1.4rem;border-top:1px solid rgba(255,255,255,0.08);display:flex;gap:8px}
+#chat-input{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:4px;padding:10px 14px;color:white;font-family:var(--fb);font-size:13px;outline:none;transition:border-color 0.2s}
+#chat-input::placeholder{color:rgba(255,255,255,0.3)}
+#chat-input:focus{border-color:var(--gold-border)}
+#chat-send{background:var(--gold);color:var(--black);border:none;border-radius:4px;padding:10px 18px;font-size:11px;font-weight:700;letter-spacing:1px;cursor:pointer;transition:all 0.2s;text-transform:uppercase;white-space:nowrap}
+#chat-send:hover{background:#E8C545}
+#chat-send:disabled{opacity:0.5;cursor:not-allowed}
 
-/* ── ANIMATIONS ── */
-.fade-up{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
-.fade-up.visible{opacity:1;transform:translateY(0)}
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.contact-form{display:flex;flex-direction:column;gap:14px}
+.form-field{display:flex;flex-direction:column;gap:5px}
+.form-label{font-family:var(--fm);font-size:10px;color:var(--text-3);letter-spacing:1.5px;text-transform:uppercase}
+.form-input{background:var(--white);border:1px solid var(--border);border-radius:2px;padding:11px 14px;font-family:var(--fb);font-size:14px;color:var(--text);outline:none;transition:border-color 0.2s}
+.form-input:focus{border-color:var(--navy)}
+textarea.form-input{resize:vertical;min-height:120px}
+.contact-direct{display:flex;flex-direction:column;gap:12px}
+.contact-link-card{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.4rem;background:var(--white);border:1px solid var(--border);border-radius:4px;transition:all 0.2s}
+.contact-link-card:hover{border-color:var(--navy);transform:translateX(4px)}
+.clc-icon{width:36px;height:36px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:11px;font-weight:700;color:var(--gold);flex-shrink:0}
+.clc-label{font-size:10px;color:var(--text-3);letter-spacing:1px;text-transform:uppercase;margin-bottom:2px;font-family:var(--fm)}
+.clc-val{font-size:13px;color:var(--text);font-weight:500}
 
-/* ── MOBILE TOGGLE ── */
-.mob-toggle{display:none;position:fixed;top:16px;right:16px;z-index:200;width:40px;height:40px;background:var(--white);border:1px solid var(--border);border-radius:8px;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.08)}
-.mob-toggle span{display:block;width:18px;height:1.5px;background:var(--text);border-radius:1px;transition:all 0.2s}
+/* FOOTER */
+footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);padding:2.5rem 6%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-name{font-family:var(--fd);font-size:1.1rem;font-weight:600;color:white}
+.footer-name span{color:var(--gold)}
+.footer-links{display:flex;gap:1.5rem}
+.footer-links a{font-family:var(--fm);font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:1px;text-transform:uppercase;transition:color 0.2s}
+.footer-links a:hover{color:var(--gold)}
+.footer-copy{font-family:var(--fm);font-size:10px;color:rgba(255,255,255,0.2);letter-spacing:0.5px}
 
-/* ── RESPONSIVE ── */
+/* ANIMATIONS */
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease}
+.fade-up.in{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
 @media(max-width:900px){
-  .sidebar{transform:translateX(-100%);transition:transform 0.3s}
-  .sidebar.open{transform:translateX(0)}
-  main{margin-left:0}
-  footer{margin-left:0}
-  .mob-toggle{display:flex}
-  .about-grid,.contact-layout{grid-template-columns:1fr}
-  .about-photo-box{display:none}
+  .hero-inner{grid-template-columns:1fr;gap:3rem;text-align:center;padding-top:80px}
+  .hero-left{order:-1}
+  .hero-avatar-ring{width:180px;height:180px}
+  .hero-avatar{width:150px;height:150px;font-size:32px}
+  .hero-bio{margin:0 auto 2rem}
+  .hero-btns{justify-content:center}
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .about-grid,.exp-grid,.contact-grid,.ai-inner{grid-template-columns:1fr}
+  .about-photo{display:none}
+  .nav-links{display:none}
 }
 @media(max-width:640px){
-  section{padding:3.5rem 6% 2.5rem}
+  .sec{padding:4rem 5%}
   .hero h1{font-size:2.5rem}
-  .ghost-text{font-size:28vw}
   .projects-grid{grid-template-columns:1fr}
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
 }
 </style>
 </head>
 <body>
 
-<!-- mobile toggle -->
-<button class="mob-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')" aria-label="Menu">
-  <span></span><span></span><span></span>
-</button>
-
-<!-- SIDEBAR -->
-<aside class="sidebar" id="sidebar">
-  <div class="sidebar-avatar">
-    RRR
-    <div class="avatar-badge"></div>
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">R<span>.</span>R<span>.</span>R</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#shadow-ai">Shadow AI</a>
+    <a href="#contact">Contact</a>
   </div>
-  <div class="sidebar-name">Rohith<br>Ravindra Reddy</div>
-  <div class="sidebar-title">Financial Analytics</div>
-  <div class="sidebar-divider"></div>
+  <a href="#shadow-ai" class="nav-cta">Talk to Shadow AI</a>
+</nav>
 
-  <nav id="sidebar-nav">
-    <a href="#home" class="active"><span class="nav-dot"></span>Home</a>
-    <a href="#about"><span class="nav-dot"></span>About</a>
-    <a href="#projects"><span class="nav-dot"></span>Projects</a>
-    <a href="#skills"><span class="nav-dot"></span>Skills</a>
-    <a href="#contact"><span class="nav-dot"></span>Contact</a>
-  </nav>
-
-  <div class="sidebar-socials">
-    <a href="mailto:ravindra.rohith@gmail.com" title="Email">@</a>
-    <a href="https://linkedin.com/in/rohith-ravindra-reddy" target="_blank" title="LinkedIn">in</a>
-    <a href="https://github.com/Rohith7022" target="_blank" title="GitHub">gh</a>
-  </div>
-  <div class="sidebar-footer">Richmond, VA · Open to Work</div>
-</aside>
-
-<!-- MAIN CONTENT -->
-<main>
-
-  <!-- HERO -->
-  <section id="home">
-    <div class="ghost-text" aria-hidden="true">ROHITH</div>
-    <div class="hero-eyebrow">MS Financial Analytics · VCU</div>
-    <h1>
-      Quantitative<br>
-      <em>Finance.</em><br>
-      Rigorous Data.
-    </h1>
-    <p class="hero-sub">I build factor models, volatility frameworks, and data pipelines that turn millions of financial observations into clear, defensible answers.</p>
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="hero-stat-num">18</div>
-        <div class="hero-stat-label">Projects</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">1.04M+</div>
-        <div class="hero-stat-label">Data Observations</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">3.80</div>
-        <div class="hero-stat-label">GPA at VCU</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">0.50</div>
-        <div class="hero-stat-label">McFadden R²</div>
+<!-- HERO -->
+<section id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-avatar-ring">
+        <div class="hero-avatar">
+          RRR
+          <div class="hero-avatar-label">Add Photo</div>
+        </div>
       </div>
     </div>
-    <div class="hero-actions">
-      <a href="#projects" class="btn-main">View my work</a>
-      <a href="#contact" class="btn-ghost">Get in touch</a>
+    <div class="hero-right">
+      <div class="hero-eyebrow">MS Financial Analytics · VCU · Richmond, VA</div>
+      <h1>Rohith<br>Ravindra<br><em>Reddy.</em></h1>
+      <div class="hero-tagline">Transforming financial data into strategic intelligence.</div>
+      <p class="hero-bio">I bridge finance, quantitative research, and applied data science — from replicating landmark factor models on 1.04 million market observations to building NLP tools that predict stock price jumps from SEC filings with a McFadden R² of 0.50.</p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-gold">Explore Projects</a>
+        <a href="#shadow-ai" class="btn-outline">Talk to Shadow AI</a>
+        <a href="#contact" class="btn-outline">Get in Touch</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="hstat-num" data-count="18" data-suffix="">0</div><div class="hstat-label">Projects</div></div>
+        <div><div class="hstat-num" data-count="1.04" data-suffix="M+">0</div><div class="hstat-label">Data Observations</div></div>
+        <div><div class="hstat-num" data-count="3.80" data-suffix="/4.0">0</div><div class="hstat-label">GPA at VCU</div></div>
+        <div><div class="hstat-num" data-count="0.50" data-suffix=" R²">0</div><div class="hstat-label">McFadden (NLP)</div></div>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ABOUT -->
-  <section id="about">
+<!-- ABOUT -->
+<section id="about" class="sec sec-ivory">
+  <div class="max-w">
     <div class="sec-label">Background</div>
-    <div class="sec-title">Who I am</div>
     <div class="about-grid">
-      <div class="about-body">
-        <p>I'm a <strong>Financial Analytics graduate student at VCU</strong> (GPA 3.80/4.0) with a dual academic foundation — an engineering degree that trained me to think systematically, and an MBA in Finance from Christ University that grounded me in business reality.</p>
-        <p>My work sits at the intersection of <strong>empirical asset pricing, statistical modeling, and applied data science</strong>. I've processed over 1 million stock-month observations, replicated landmark academic papers within tolerance, and built tools that make complex financial analysis accessible and deployable.</p>
-        <p>My final project was selected by my professor as a <strong>showcase example for future students</strong> — the highest recognition given in the course.</p>
-        <p>I'm actively seeking full-time roles in <strong>quantitative research, financial analytics, and data-driven investment management</strong>.</p>
-        <div class="edu-cards">
-          <div class="edu-card">
-            <span>Virginia Commonwealth University</span>
-            <h4>MS Business – Financial Analytics</h4>
-            <p>GPA 3.80 / 4.0 · Richmond, VA</p>
-          </div>
-          <div class="edu-card">
-            <span>Christ University</span>
-            <h4>MBA – Finance</h4>
-            <p>GPA 3.44 / 4.0 · Bangalore, India</p>
-          </div>
-        </div>
+      <div class="about-photo fade-up">
+        <div class="photo-monogram">RRR</div>
+        <div class="photo-text">Graduation Photo<br>Coming Soon</div>
       </div>
-      <div class="about-photo-box" title="Photo coming soon">
-        <div class="photo-placeholder">
-          <div class="photo-icon"></div>
-          <div class="photo-label">Graduation Photo</div>
-          <div class="photo-hint">Coming Soon</div>
+      <div class="about-content fade-up">
+        <div class="sec-title">About Rohith</div>
+        <p>Rohith Ravindra Reddy is a financial analytics professional with interdisciplinary depth across <strong>engineering, business, and quantitative finance</strong>. He holds an MS in Business (Financial Analytics) from Virginia Commonwealth University (GPA 3.80/4.0) and an MBA in Finance from Christ University (GPA 3.44/4.0), backed by a Bachelor of Engineering in Mechanical Engineering from Ramaiah Institute of Technology (CGPA 8.17).</p>
+        <p>His strengths sit at the intersection of <strong>empirical asset pricing, statistical modeling, and applied data science</strong>. He has processed over 1 million stock-month observations, replicated landmark academic papers within tolerance, and built production-grade analytics tools in Python, R, and Streamlit.</p>
+        <p>His final project at VCU was <strong>selected by Prof. Larry Tentor as a showcase example for future cohorts</strong> — the highest academic recognition in the course.</p>
+        <p>Currently based in Richmond, VA — open to full-time roles in quantitative research, financial analytics, and investment management.</p>
+        <div class="about-badges">
+          <div class="about-badge"><div class="about-badge-icon">📍</div><div class="about-badge-text"><strong>Richmond, VA · Open to Relocation</strong>Available immediately</div></div>
+          <div class="about-badge"><div class="about-badge-icon">📊</div><div class="about-badge-text"><strong>WRDS / CRSP Access</strong>Institutional data</div></div>
+          <div class="about-badge"><div class="about-badge-icon">💡</div><div class="about-badge-text"><strong>Bloomberg Terminal</strong>Certified user</div></div>
+          <div class="about-badge"><div class="about-badge-icon">🏆</div><div class="about-badge-text"><strong>Professor's Showcase</strong>FIRE 540, VCU 2025</div></div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- PROJECTS -->
-  <section id="projects">
+<!-- EDUCATION -->
+<section id="education" class="sec sec-dark">
+  <div class="max-w">
+    <div class="sec-label">Academic Journey</div>
+    <div class="sec-title sec-title-light fade-up">Education</div>
+    <div class="timeline">
+      <div class="tl-item fade-up"><div class="tl-dot"></div><div class="tl-year">ICSE</div><div class="tl-school">St. John's High School</div><div class="tl-degree">Indian Certificate of Secondary Education</div><span class="tl-score">Score: 81.14%</span></div>
+      <div class="tl-item fade-up"><div class="tl-dot"></div><div class="tl-year">PUC Science</div><div class="tl-school">Vikas PU College</div><div class="tl-degree">Pre-University · Science</div><span class="tl-score">Score: 93.33%</span>&nbsp;<span class="tl-score">CET Eng Rank: 3111 · Med Rank: 2629</span></div>
+      <div class="tl-item fade-up"><div class="tl-dot"></div><div class="tl-year">B.E.</div><div class="tl-school">Ramaiah Institute of Technology</div><div class="tl-degree">Bachelor of Engineering · Mechanical Engineering</div><span class="tl-score">CGPA: 8.17 / 10.0</span></div>
+      <div class="tl-item fade-up"><div class="tl-dot"></div><div class="tl-year">MBA</div><div class="tl-school">Christ University · Bangalore, India</div><div class="tl-degree">Master of Business Administration · Finance</div><span class="tl-score">GPA: 3.44 / 4.0</span></div>
+      <div class="tl-item fade-up"><div class="tl-dot"></div><div class="tl-year">MS ⭐ Current</div><div class="tl-school">Virginia Commonwealth University · Richmond, VA</div><div class="tl-degree">MS Business – Financial Analytics · FIRE 691, FIRE 540, Derivatives, Risk Mgmt, Fixed Income</div><span class="tl-score">GPA: 3.80 / 4.0</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTISE -->
+<section id="expertise" class="sec sec-white">
+  <div class="max-w">
+    <div class="sec-label">Capabilities</div>
+    <div class="sec-title fade-up">Core Expertise</div>
+    <div class="expertise-tabs fade-up">
+      <button class="tab-btn active" data-tab="finance">Finance</button>
+      <button class="tab-btn" data-tab="quant">Quantitative</button>
+      <button class="tab-btn" data-tab="tech">Technical</button>
+    </div>
+    <div class="expertise-panel active" id="tab-finance">
+      <div class="skill-chip">Factor Models (FF3, FF5, Carhart FF4)</div>
+      <div class="skill-chip">Portfolio Optimization (Markowitz)</div>
+      <div class="skill-chip">Derivatives & Fixed Income</div>
+      <div class="skill-chip">Risk Analytics & VaR</div>
+      <div class="skill-chip">Brinson Attribution</div>
+      <div class="skill-chip">Active Share (Cremers-Petajisto)</div>
+      <div class="skill-chip">Mutual Fund & ETF Analysis</div>
+      <div class="skill-chip">Corporate Finance & DCF</div>
+      <div class="skill-chip">DuPont Analysis</div>
+      <div class="skill-chip">Forensic Financial Analysis</div>
+    </div>
+    <div class="expertise-panel" id="tab-quant">
+      <div class="skill-chip">GARCH Volatility Modeling</div>
+      <div class="skill-chip">ARIMA / SARIMA Forecasting</div>
+      <div class="skill-chip">Return Predictability (Cochrane/Goyal-Welch)</div>
+      <div class="skill-chip">Fama-MacBeth Regressions</div>
+      <div class="skill-chip">NLP Sentiment (Loughran-McDonald)</div>
+      <div class="skill-chip">Logistic Regression & Jump Detection</div>
+      <div class="skill-chip">Monte Carlo Simulation</div>
+      <div class="skill-chip">Structural Break Testing</div>
+      <div class="skill-chip">Rolling Regression Analysis</div>
+      <div class="skill-chip">Efficient Frontier Construction</div>
+    </div>
+    <div class="expertise-panel" id="tab-tech">
+      <div class="skill-chip">Python (Expert)</div>
+      <div class="skill-chip">R / tidyverse (Advanced)</div>
+      <div class="skill-chip">pandas · numpy · statsmodels</div>
+      <div class="skill-chip">arch (GARCH) · scipy · yfinance</div>
+      <div class="skill-chip">Streamlit · Plotly · matplotlib</div>
+      <div class="skill-chip">PerformanceAnalytics · Quarto</div>
+      <div class="skill-chip">SQL (Intermediate)</div>
+      <div class="skill-chip">Excel (Advanced) · Power BI</div>
+      <div class="skill-chip">Bloomberg Terminal · WRDS/CRSP</div>
+      <div class="skill-chip">SEC EDGAR API · BeautifulSoup</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="sec sec-dark">
+  <div class="max-w">
+    <div class="sec-label">Career</div>
+    <div class="sec-title sec-title-light fade-up">Experience</div>
+    <div class="exp-grid">
+      <div class="exp-card fade-up">
+        <div class="exp-role">Sales & Transit Coordinator</div>
+        <div class="exp-company">L A Aggregates and Granite Traders</div>
+        <div class="exp-period">Mar 2021 – Feb 2022</div>
+        <ul class="exp-duties">
+          <li>Sales operations and revenue performance tracking</li>
+          <li>Logistics planning and vendor coordination</li>
+          <li>Transit management and supply chain analytics</li>
+          <li>Business reporting and operational performance monitoring</li>
+        </ul>
+      </div>
+      <div class="exp-card fade-up">
+        <div class="exp-role">Business Analytics Intern</div>
+        <div class="exp-company">Elemental Fixtures Pvt Ltd</div>
+        <div class="exp-period">May 2024 – Jun 2024</div>
+        <ul class="exp-duties">
+          <li>Operational support and business process analysis</li>
+          <li>Financial data analysis and reporting</li>
+          <li>Process evaluation and efficiency diagnostics</li>
+          <li>Data visualization and stakeholder reporting</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="sec sec-ivory">
+  <div class="max-w">
     <div class="sec-label">Work</div>
-    <div class="sec-title">Projects & Research</div>
+    <div class="sec-title fade-up">Projects & Research</div>
+    <div class="proj-filters fade-up">
+      <button class="pf-btn active" data-filter="all">All (18)</button>
+      <button class="pf-btn" data-filter="python">Python</button>
+      <button class="pf-btn" data-filter="r">R</button>
+      <button class="pf-btn" data-filter="personal">Personal</button>
+    </div>
     <div class="projects-grid">
 
-      <div class="proj-card proj-featured fade-up">
-        <div class="proj-course">★ Professor's Showcase · FIRE 540</div>
-        <h3>Fama-French Replication &amp; Risk Extensions</h3>
-        <p>Selected by Prof. Larry Tentor as an example for future students. Full FF3/FF5 replication across 1,204 months (1926–2025), structural breaks, and CAPM extensions in R with a reproducible Quarto report.</p>
-        <div class="proj-tags"><span class="proj-tag">R</span><span class="proj-tag">Quarto</span><span class="proj-tag">tidyverse</span><span class="proj-tag">PerformanceAnalytics</span></div>
+      <div class="proj-card featured fade-up" data-tag="r">
+        <div class="proj-badge gold">★ Professor's Showcase · FIRE 540 · Fall 2025</div>
+        <h3>Fama-French Replication & Risk Extensions</h3>
+        <p>"Super, thanks for this work! Would it be ok if I use this as an example for future students?" — Prof. Larry Tentor, VCU. Full FF3/FF5 replication across 1,204 months (1926–2025), structural break testing, rolling regressions, and CAPM extensions in a reproducible Quarto report.</p>
+        <div class="proj-result">✅ Replicated FF3 within tolerance · Structural breaks identified</div>
+        <div class="proj-tags"><span class="proj-tag">R</span><span class="proj-tag">Quarto</span><span class="proj-tag">tidyverse</span><span class="proj-tag">PerformanceAnalytics</span><span class="proj-tag">strucchange</span></div>
         <a href="https://github.com/Rohith7022/fama-french-replication-r" target="_blank" class="proj-link">GitHub</a>
       </div>
 
-      <div class="proj-card fade-up">
-        <div class="proj-course">FIRE 691 · Week 1</div>
-        <h3>Return Predictability – Dividend-Price Ratio</h3>
-        <p>Cochrane/Goyal-Welch framework on CRSP data (1927–2024). 5-year cumulative R² of 8.41% (annual) and 7.55% (monthly) — confirms predictability is a long-horizon phenomenon only.</p>
-        <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">CRSP</span><span class="proj-tag">OOS R²</span><span class="proj-tag">Cochrane</span></div>
+      <div class="proj-card fade-up" data-tag="python">
+        <div class="proj-badge navy">FIRE 691 · Week 1</div>
+        <h3>Return Predictability — Dividend-Price Ratio</h3>
+        <p>Tested the Cochrane (2008) / Goyal-Welch (2008) hypothesis using CRSP data (1927–2024). In-sample regressions and out-of-sample R² evaluation at multiple horizons reveal that predictability is exclusively a long-horizon phenomenon.</p>
+        <div class="proj-result">5-yr R² = 8.41% (annual) · 7.55% (monthly)</div>
+        <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">CRSP</span><span class="proj-tag">statsmodels</span><span class="proj-tag">OOS R²</span></div>
         <a href="https://github.com/Rohith7022/return-predictability" target="_blank" class="proj-link">GitHub</a>
       </div>
 
-      <div class="proj-card fade-up">
-        <div class="proj-course">FIRE 691 · Weeks 3–5</div>
-        <h3>FF (1992) Cross-Sectional Replication</h3>
-        <p>Replicated Fama & French (1992) Tables 1–3 using 1.04M observations. 25 size × B/M portfolios, Fama-MacBeth regressions confirming size and value premia. Beta alone cannot explain the cross-section.</p>
+      <div class="proj-card fade-up" data-tag="python">
+        <div class="proj-badge navy">FIRE 691 · Weeks 3–5</div>
+        <h3>Fama & French (1992) Cross-Sectional Replication</h3>
+        <p>Replicated FF (1992) Tables 1–3 using 1.04 million CRSP-Compustat observations. 25 size × B/M portfolios, Fama-MacBeth regressions confirming size and value premia. Beta alone cannot explain the cross-section.</p>
+        <div class="proj-result">1.04M observations · Tables 1–3 replicated within tolerance</div>
         <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">CRSP</span><span class="proj-tag">Compustat</span><span class="proj-tag">Fama-MacBeth</span></div>
         <a href="https://github.com/Rohith7022/ff1992-cross-sectional-replication" target="_blank" class="proj-link">GitHub</a>
       </div>
 
-      <div class="proj-card fade-up">
-        <div class="proj-course">FIRE 691 · Week 6</div>
-        <h3>Carhart Momentum (UMD) Factor</h3>
-        <p>Constructed momentum factor from scratch using 6 size × momentum portfolios. Standard (12,2) window is empirically optimal (Sharpe 0.507, annualized 7.00%). Validated against 4 alternative formation windows.</p>
-        <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">CRSP</span><span class="proj-tag">Carhart 1997</span></div>
+      <div class="proj-card fade-up" data-tag="python">
+        <div class="proj-badge navy">FIRE 691 · Week 6</div>
+        <h3>Carhart Momentum (UMD) Factor Construction</h3>
+        <p>Constructed the Carhart (1997) momentum factor from scratch using CRSP data (1962–2025). 6 size × momentum portfolios, 5 formation window experiments, Netflix decile tracking over time.</p>
+        <div class="proj-result">Sharpe: 0.507 · Ann. Return: 7.00% · Std: 13.80%</div>
+        <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">CRSP</span><span class="proj-tag">Carhart 1997</span><span class="proj-tag">matplotlib</span></div>
         <a href="https://github.com/Rohith7022/momentum-umd-factor" target="_blank" class="proj-link">GitHub</a>
       </div>
 
-      <div class="proj-card fade-up">
-        <div class="proj-course">FIRE 691 · Week 7</div>
-        <h3>ARK ETF Performance Analysis</h3>
-        <p>Quantitative evaluation of ARKK, ARKW, ARKG, ARKQ, ARKF + FINX and IWM. Carhart 4-factor alpha, FF5 alpha, Sharpe, appraisal ratios, R². Rolling 36-month windows expose time-varying alpha invisible in full-sample estimates.</p>
-        <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">FF4/FF5</span><span class="proj-tag">Rolling OLS</span></div>
+      <div class="proj-card fade-up" data-tag="python">
+        <div class="proj-badge navy">FIRE 691 · Week 7</div>
+        <h3>ARK ETF Quantitative Performance Analysis</h3>
+        <p>Evaluated ARKK, ARKW, ARKG, ARKQ, ARKF, FINX, and IWM using Carhart 4-factor alpha, FF5 alpha, realized alpha, Sharpe, appraisal ratio, and R². Rolling 36-month windows reveal time-varying alpha invisible in full-sample estimates.</p>
+        <div class="proj-result">Rolling alpha confirms ARK outperformance was factor-driven, not persistent skill</div>
+        <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">statsmodels</span><span class="proj-tag">FF4/FF5</span><span class="proj-tag">Rolling OLS</span></div>
         <a href="https://github.com/Rohith7022/ark-etf-performance-analysis" target="_blank" class="proj-link">GitHub</a>
       </div>
 
-      <div class="proj-card fade-up">
-        <div class="proj-course">FIRE 691 · Week 9</div>
-        <h3>Stock Price Jumps &amp; NLP Sentiment</h3>
-        <p>Identified all 7 extreme SPY jump days (Feb–Mar 2020 COVID crash) via expanding-window Z-score. Predicted BRK.B jumps with logistic regression on FOMC dates, earnings, and Loughran-McDonald sentiment from 48 SEC 8-K filings. McFadden R² = 0.50.</p>
+      <div class="proj-card fade-up" data-tag="python">
+        <div class="proj-badge navy">FIRE 691 · Week 9</div>
+        <h3>Stock Price Jumps & NLP Sentiment — BRK.B</h3>
+        <p>Jump detection on SPY and BRK.B (2019–2025) via Jeon-McCurdy-Zhao expanding-window Z-score. Logistic regression with FOMC dates, earnings, and Loughran-McDonald sentiment from 48 SEC 8-K filings.</p>
+        <div class="proj-result">McFadden R² = 0.50 · 7 extreme SPY jumps (all Feb–Mar 2020)</div>
         <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">NLP</span><span class="proj-tag">SEC EDGAR</span><span class="proj-tag">Logistic Reg</span></div>
         <a href="https://github.com/Rohith7022/stock-price-jumps-nlp-sentiment" target="_blank" class="proj-link">GitHub</a>
       </div>
 
-      <div class="proj-card fade-up">
-        <div class="proj-course">FIRE 691 · Weeks 10–11</div>
-        <h3>Active Share – QQQ vs SPY</h3>
-        <p>Measured QQQ's active share across 108 months (2016–2025): average 62.88%, decomposed into within-sector (51.62%) and sector-level (34.33%) via Brinson attribution. AI-driven 2023–2024 outperformance produced 30%+ active returns from declining active share.</p>
-        <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">Active Share</span><span class="proj-tag">Brinson</span></div>
+      <div class="proj-card fade-up" data-tag="python">
+        <div class="proj-badge navy">FIRE 691 · Weeks 10–11</div>
+        <h3>Active Share & Brinson Attribution — QQQ vs SPY</h3>
+        <p>Measured QQQ's active share vs. SPY across 108 months (2016–2025). Cremers-Petajisto decomposition into within-sector and sector-level components. Brinson-Hood-Beebower attribution per period.</p>
+        <div class="proj-result">Avg Active Share: 62.88% · Within-sector: 51.62% · Sector: 34.33%</div>
+        <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">Active Share</span><span class="proj-tag">Brinson</span><span class="proj-tag">CRSP</span></div>
         <a href="https://github.com/Rohith7022/portfolio-attribution-active-share" target="_blank" class="proj-link">GitHub</a>
       </div>
 
-      <div class="proj-card fade-up">
-        <div class="proj-course">Personal Project</div>
-        <h3>Stock Analyzer — Live Dashboard</h3>
-        <p>End-to-end Streamlit application: GARCH(1,1) volatility, historical VaR at 95% and 99%, MA20/MA50 trend overlays, and real-time equity data. Built and deployed entirely from scratch.</p>
-        <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">Streamlit</span><span class="proj-tag">GARCH</span><span class="proj-tag">VaR</span></div>
+      <div class="proj-card fade-up" data-tag="personal">
+        <div class="proj-badge navy">Personal Project</div>
+        <h3>Stock Analyzer — Live Analytics Dashboard</h3>
+        <p>Production-ready Streamlit app. Users enter any ticker and receive GARCH(1,1) volatility, VaR at 95% and 99%, MA20/MA50 overlays, and real-time equity data. End-to-end: model to interface.</p>
+        <div class="proj-result">Fully deployable · GARCH + VaR + live data</div>
+        <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">Streamlit</span><span class="proj-tag">GARCH</span><span class="proj-tag">VaR</span><span class="proj-tag">yfinance</span></div>
         <a href="https://github.com/Rohith7022/stock-analyzer-app" target="_blank" class="proj-link">GitHub</a>
       </div>
 
-      <div class="proj-card fade-up">
-        <div class="proj-course">FIRE 540 · Deloitte Case</div>
-        <h3>Forensic Financial Analysis</h3>
-        <p>Data-driven fraud investigation on the Deloitte Bags Medical Devices case. Statistical pattern detection on commission records, cross-referenced with stakeholder interviews to surface and visualize the fraud signal in R.</p>
-        <div class="proj-tags"><span class="proj-tag">R</span><span class="proj-tag">tidyverse</span><span class="proj-tag">Forensic Analytics</span></div>
-        <a href="https://github.com/Rohith7022/forensic-financial-analysis" target="_blank" class="proj-link">GitHub</a>
+      <div class="proj-card fade-up proj-hidden" data-tag="python">
+        <div class="proj-badge navy">FIRE 691 · Week 8</div>
+        <h3>Mutual Fund Performance Analysis</h3>
+        <p>Large-scale evaluation using CRSP Mutual Fund Database (2005–2025). FF5 + Momentum model with rolling 36-month windows to assess alpha persistence, factor stability, and active management value after expenses.</p>
+        <div class="proj-result">Most active funds underperform after expenses · Size & turnover predict performance</div>
+        <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">CRSP</span><span class="proj-tag">FF5+MOM</span><span class="proj-tag">Rolling OLS</span></div>
+        <a href="https://github.com/Rohith7022/mutual-fund-performance-analysis" target="_blank" class="proj-link">GitHub</a>
       </div>
 
-      <div class="proj-card fade-up">
-        <div class="proj-course">FIRE 540 · Three-Part Project</div>
-        <h3>DuPont Analysis — End-to-End</h3>
-        <p>Full DuPont decomposition pipeline: investor question formulation, ETL from raw financial statements, and regression analysis ranking companies and industries by ROE decomposition across three sequential assignments.</p>
-        <div class="proj-tags"><span class="proj-tag">R</span><span class="proj-tag">ETL</span><span class="proj-tag">DuPont</span><span class="proj-tag">ROE</span></div>
-        <a href="https://github.com/Rohith7022/dupont-analysis-r" target="_blank" class="proj-link">GitHub</a>
+      <div class="proj-card fade-up proj-hidden" data-tag="python">
+        <div class="proj-badge navy">FIRE 691 · Week 2</div>
+        <h3>Time-Series Properties of Stock Returns</h3>
+        <p>ACF/PACF analysis, ARIMA identification, SARIMA seasonal fitting, Holt-Winters smoothing, and extended Goyal-Welch OOS R² evaluation across 10+ predictors at annual and monthly frequency on CRSP data.</p>
+        <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">ARIMA</span><span class="proj-tag">SARIMA</span><span class="proj-tag">statsmodels</span></div>
+        <a href="https://github.com/Rohith7022/time-series-stock-return-properties" target="_blank" class="proj-link">GitHub</a>
       </div>
 
-      <div class="proj-card fade-up">
-        <div class="proj-course">FIRE 691 · Weeks 3–6 Combined</div>
-        <h3>Fama-French FF3 &amp; FF4 Construction</h3>
-        <p>Reproduced Fama & French (1992) Tables 1–3 from CRSP-Compustat data. Built SMB, HML, and Carhart MOM factors from scratch with precise date alignment to eliminate look-ahead bias across 1.04M observations.</p>
+      <div class="proj-card fade-up proj-hidden" data-tag="python">
+        <div class="proj-badge navy">FIRE 691 · Combined</div>
+        <h3>Fama-French FF3 & FF4 Factor Construction</h3>
+        <p>Full SMB, HML, and Carhart MOM factor construction from 1.04M CRSP-Compustat observations. Precise fiscal-year-end date alignment eliminates look-ahead bias. Validated against published Kenneth French Data Library series.</p>
         <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">CRSP</span><span class="proj-tag">Compustat</span><span class="proj-tag">WRDS</span></div>
         <a href="https://github.com/Rohith7022/fama-french-factor-models" target="_blank" class="proj-link">GitHub</a>
       </div>
 
-      <div class="proj-card fade-up">
-        <div class="proj-course">FIRE 691 · Week 2</div>
-        <h3>Time-Series Properties of Returns</h3>
-        <p>Autocorrelation analysis, ARIMA/SARIMA fitting, and Holt-Winters forecasting on CRSP monthly data. Extended Goyal-Welch (2008) framework with 10+ predictors at annual and monthly frequency.</p>
-        <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">ARIMA</span><span class="proj-tag">SARIMA</span><span class="proj-tag">Goyal-Welch</span></div>
-        <a href="https://github.com/Rohith7022/time-series-stock-return-properties" target="_blank" class="proj-link">GitHub</a>
+      <div class="proj-card fade-up proj-hidden" data-tag="python">
+        <div class="proj-badge navy">FIRE 691</div>
+        <h3>Portfolio Optimization — Efficient Frontier</h3>
+        <p>Markowitz mean-variance optimization with Monte Carlo simulation of 10,000+ portfolios. Scipy optimization identifies minimum-variance and maximum Sharpe Ratio allocations. Includes stress testing and correlation heatmap.</p>
+        <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">scipy</span><span class="proj-tag">Markowitz</span><span class="proj-tag">Monte Carlo</span></div>
+        <a href="https://github.com/Rohith7022/portfolio-optimization" target="_blank" class="proj-link">GitHub</a>
+      </div>
+
+      <div class="proj-card fade-up proj-hidden" data-tag="python">
+        <div class="proj-badge navy">FIRE 540</div>
+        <h3>Financial Time Series Forecasting</h3>
+        <p>ARIMA, SARIMA, and Holt-Winters models applied to 5-year daily data for 6 diversified equities. AIC/BIC model selection. Cross-stock comparison reveals sector-specific seasonality and volatility clustering.</p>
+        <div class="proj-result">85% variance explained · RMSE &lt; 2.5% out-of-sample</div>
+        <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">ARIMA</span><span class="proj-tag">SARIMA</span><span class="proj-tag">Holt-Winters</span></div>
+        <a href="https://github.com/Rohith7022/financial-time-series-forecasting" target="_blank" class="proj-link">GitHub</a>
+      </div>
+
+      <div class="proj-card fade-up proj-hidden" data-tag="r">
+        <div class="proj-badge navy">FIRE 540 · Three-Part</div>
+        <h3>DuPont Analysis — End-to-End</h3>
+        <p>Full DuPont decomposition pipeline in R: investor question formulation (Part I), ETL from raw financial statements (Part II), regression analysis ranking companies and industries by ROE decomposition (Part III).</p>
+        <div class="proj-tags"><span class="proj-tag">R</span><span class="proj-tag">tidyverse</span><span class="proj-tag">ETL</span><span class="proj-tag">ggplot2</span><span class="proj-tag">ROE</span></div>
+        <a href="https://github.com/Rohith7022/dupont-analysis-r" target="_blank" class="proj-link">GitHub</a>
+      </div>
+
+      <div class="proj-card fade-up proj-hidden" data-tag="r">
+        <div class="proj-badge navy">FIRE 540 · Deloitte Case</div>
+        <h3>Forensic Financial Analysis — Sales Fraud</h3>
+        <p>Data-driven fraud investigation on the Deloitte Bags Medical Devices commission fraud case. Statistical pattern detection on commission records, cross-referenced with stakeholder interviews, visualized across 3 key graphics.</p>
+        <div class="proj-tags"><span class="proj-tag">R</span><span class="proj-tag">tidyverse</span><span class="proj-tag">Forensic Analytics</span><span class="proj-tag">ggplot2</span></div>
+        <a href="https://github.com/Rohith7022/forensic-financial-analysis" target="_blank" class="proj-link">GitHub</a>
+      </div>
+
+      <div class="proj-card fade-up proj-hidden" data-tag="r">
+        <div class="proj-badge navy">FIRE 540</div>
+        <h3>Fama-French Funds Performance Attribution</h3>
+        <p>Factor loading estimation and return attribution for investment funds in R. Decomposed fund returns into market, size, and value components to isolate true alpha from systematic risk compensation.</p>
+        <div class="proj-tags"><span class="proj-tag">R</span><span class="proj-tag">broom</span><span class="proj-tag">PerformanceAnalytics</span><span class="proj-tag">OLS</span></div>
+        <a href="https://github.com/Rohith7022/fama-french-funds-r" target="_blank" class="proj-link">GitHub</a>
+      </div>
+
+      <div class="proj-card fade-up proj-hidden" data-tag="r">
+        <div class="proj-badge navy">FIRE 540</div>
+        <h3>Portfolio Holdings Over Time</h3>
+        <p>Tracked and visualized how fund asset allocations shift across sectors and asset classes over multiple reporting periods — revealing concentration risk, passive drift, and active rebalancing signals in R.</p>
+        <div class="proj-tags"><span class="proj-tag">R</span><span class="proj-tag">tidyverse</span><span class="proj-tag">ggplot2</span><span class="proj-tag">lubridate</span></div>
+        <a href="https://github.com/Rohith7022/portfolio-holdings-over-time" target="_blank" class="proj-link">GitHub</a>
+      </div>
+
+      <div class="proj-card fade-up proj-hidden" data-tag="r">
+        <div class="proj-badge navy">FIRE 540</div>
+        <h3>Portfolio Optimization in R — EDHEC & LP</h3>
+        <p>Minimum variance portfolio using EDHEC hedge fund returns (Convertible Arbitrage, CTA Global, Distressed Securities, Emerging Markets). Plus linear programming resource allocation solved with lpSolve.</p>
+        <div class="proj-tags"><span class="proj-tag">R</span><span class="proj-tag">tidyquant</span><span class="proj-tag">lpSolve</span><span class="proj-tag">Quadratic Programming</span></div>
+        <a href="https://github.com/Rohith7022/portfolio-optimization-r" target="_blank" class="proj-link">GitHub</a>
       </div>
 
     </div>
-  </section>
 
-  <!-- SKILLS -->
-  <section id="skills">
-    <div class="sec-label">Capabilities</div>
-    <div class="sec-title">Skills &amp; Tools</div>
-    <div class="skills-grid">
-      <div class="skill-group fade-up">
-        <div class="skill-group-title">Quant Methods</div>
-        <div class="skill-row"><span class="skill-name">GARCH Modeling</span><div class="skill-bar-wrap"><div class="skill-bar-fill" data-w="90"></div></div></div>
-        <div class="skill-row"><span class="skill-name">Factor Models (FF3/5)</span><div class="skill-bar-wrap"><div class="skill-bar-fill" data-w="93"></div></div></div>
-        <div class="skill-row"><span class="skill-name">ARIMA / SARIMA</span><div class="skill-bar-wrap"><div class="skill-bar-fill" data-w="87"></div></div></div>
-        <div class="skill-row"><span class="skill-name">Value-at-Risk</span><div class="skill-bar-wrap"><div class="skill-bar-fill" data-w="85"></div></div></div>
-        <div class="skill-row"><span class="skill-name">Portfolio Optimization</span><div class="skill-bar-wrap"><div class="skill-bar-fill" data-w="88"></div></div></div>
-        <div class="skill-row"><span class="skill-name">NLP / Sentiment</span><div class="skill-bar-wrap"><div class="skill-bar-fill" data-w="75"></div></div></div>
+    <div style="text-align:center;margin-top:2.5rem">
+      <button id="show-more-btn" class="btn-outline" style="border-color:var(--border);color:var(--text-2)">Show All 18 Projects ↓</button>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research" class="sec sec-dark">
+  <div class="max-w">
+    <div class="sec-label">Intellectual Interests</div>
+    <div class="sec-title sec-title-light fade-up">Research Interests</div>
+    <div class="research-grid fade-up">
+      <div class="research-item"><div class="ri-num">01</div><div class="ri-title">Weather Derivatives & Commodity Risk</div></div>
+      <div class="research-item"><div class="ri-num">02</div><div class="ri-title">Volatility Derivatives & GARCH Extensions</div></div>
+      <div class="research-item"><div class="ri-num">03</div><div class="ri-title">Machine Learning in Asset Pricing</div></div>
+      <div class="research-item"><div class="ri-num">04</div><div class="ri-title">FX Arbitrage & Currency Risk</div></div>
+      <div class="research-item"><div class="ri-num">05</div><div class="ri-title">Portfolio Insurance Strategies</div></div>
+      <div class="research-item"><div class="ri-num">06</div><div class="ri-title">Options Pricing & Greeks</div></div>
+      <div class="research-item"><div class="ri-num">07</div><div class="ri-title">NLP in Finance (8-K, Earnings Calls)</div></div>
+      <div class="research-item"><div class="ri-num">08</div><div class="ri-title">Return Predictability & Market Efficiency</div></div>
+      <div class="research-item"><div class="ri-num">09</div><div class="ri-title">Factor Investing & Smart Beta</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements" class="sec sec-ivory">
+  <div class="max-w">
+    <div class="sec-label">Recognition</div>
+    <div class="sec-title fade-up">Achievements</div>
+    <div class="ach-grid">
+      <div class="ach-card fade-up"><div class="ach-icon">🏆</div><div class="ach-title">Professor's Showcase</div><div class="ach-sub">Final project selected by Prof. Larry Tentor as example for future VCU students — FIRE 540, Fall 2025</div></div>
+      <div class="ach-card fade-up"><div class="ach-icon">🥇</div><div class="ach-title">1st Place — Football</div><div class="ach-sub">Christ University ALTIUS Intercollegiate Sports Championship</div></div>
+      <div class="ach-card fade-up"><div class="ach-icon">🥉</div><div class="ach-title">3rd Place — Cricket</div><div class="ach-sub">Christ University ALTIUS Intercollegiate Sports Championship</div></div>
+      <div class="ach-card fade-up"><div class="ach-icon">📊</div><div class="ach-title">1.04M+ Observations</div><div class="ach-sub">Processed and validated in empirical asset pricing research across CRSP and Compustat datasets</div></div>
+      <div class="ach-card fade-up"><div class="ach-icon">🎓</div><div class="ach-title">GPA 3.80 / 4.0</div><div class="ach-sub">MS Business (Financial Analytics) at Virginia Commonwealth University</div></div>
+      <div class="ach-card fade-up"><div class="ach-icon">✅</div><div class="ach-title">Certifications</div><div class="ach-sub">Advanced Excel (Microsoft) · Power BI (Microsoft) · Business Analytics Simulation (Enparadigm)</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SHADOW AI -->
+<section id="shadow-ai" class="sec sec-dark">
+  <div class="max-w">
+    <div class="ai-inner">
+      <div class="ai-left fade-up">
+        <div class="ai-orb-wrap"><div class="ai-orb"></div></div>
+        <div class="ai-label">AI Assistant</div>
+        <div class="ai-title-text">Meet<br>Shadow AI</div>
+        <p class="ai-desc">Your intelligent guide to Rohith's academic, professional, and project portfolio. Trained exclusively on his background — ask anything.</p>
+        <div style="margin-bottom:1.5rem">
+          <div style="font-family:var(--fm);font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px">Ask about:</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.8">Academics · Projects · Experience<br>Research · Skills · Contact</div>
+        </div>
+        <div class="ai-chips">
+          <div class="ai-chip" onclick="sendChip(this)">Tell me about Rohith</div>
+          <div class="ai-chip" onclick="sendChip(this)">Best project?</div>
+          <div class="ai-chip" onclick="sendChip(this)">Technical skills?</div>
+          <div class="ai-chip" onclick="sendChip(this)">Why hire Rohith?</div>
+          <div class="ai-chip" onclick="sendChip(this)">Strongest result?</div>
+          <div class="ai-chip" onclick="sendChip(this)">Contact info?</div>
+          <div class="ai-chip" onclick="sendChip(this)">1 million data points project?</div>
+        </div>
       </div>
-      <div class="skill-group fade-up">
-        <div class="skill-group-title">Programming</div>
-        <div class="skill-row"><span class="skill-name">Python</span><div class="skill-bar-wrap"><div class="skill-bar-fill" data-w="92"></div></div></div>
-        <div class="skill-row"><span class="skill-name">R / tidyverse</span><div class="skill-bar-wrap"><div class="skill-bar-fill" data-w="83"></div></div></div>
-        <div class="skill-row"><span class="skill-name">Pandas / NumPy</span><div class="skill-bar-wrap"><div class="skill-bar-fill" data-w="91"></div></div></div>
-        <div class="skill-row"><span class="skill-name">statsmodels</span><div class="skill-bar-wrap"><div class="skill-bar-fill" data-w="86"></div></div></div>
-        <div class="skill-row"><span class="skill-name">SQL</span><div class="skill-bar-wrap"><div class="skill-bar-fill" data-w="74"></div></div></div>
-        <div class="skill-row"><span class="skill-name">Streamlit</span><div class="skill-bar-wrap"><div class="skill-bar-fill" data-w="82"></div></div></div>
-      </div>
-      <div class="skill-group fade-up">
-        <div class="skill-group-title">Finance Tools</div>
-        <div class="skill-row"><span class="skill-name">WRDS / CRSP</span><div class="skill-bar-wrap"><div class="skill-bar-fill" data-w="89"></div></div></div>
-        <div class="skill-row"><span class="skill-name">Bloomberg Terminal</span><div class="skill-bar-wrap"><div class="skill-bar-fill" data-w="78"></div></div></div>
-        <div class="skill-row"><span class="skill-name">Excel (Advanced)</span><div class="skill-bar-wrap"><div class="skill-bar-fill" data-w="90"></div></div></div>
-        <div class="skill-row"><span class="skill-name">Power BI</span><div class="skill-bar-wrap"><div class="skill-bar-fill" data-w="80"></div></div></div>
-        <div class="skill-row"><span class="skill-name">Quarto</span><div class="skill-bar-wrap"><div class="skill-bar-fill" data-w="77"></div></div></div>
-        <div class="skill-row"><span class="skill-name">Tableau</span><div class="skill-bar-wrap"><div class="skill-bar-fill" data-w="72"></div></div></div>
-      </div>
-      <div class="skill-group fade-up">
-        <div class="skill-group-title">Certifications</div>
-        <div style="display:flex;flex-direction:column;gap:12px;padding-top:4px">
-          <div style="display:flex;align-items:flex-start;gap:8px"><span style="color:var(--gold);font-family:var(--font-mono);font-size:11px;margin-top:1px">✓</span><span style="font-size:13px;color:var(--text-2)">Advanced Excel — Microsoft</span></div>
-          <div style="display:flex;align-items:flex-start;gap:8px"><span style="color:var(--gold);font-family:var(--font-mono);font-size:11px;margin-top:1px">✓</span><span style="font-size:13px;color:var(--text-2)">Power BI — Microsoft</span></div>
-          <div style="display:flex;align-items:flex-start;gap:8px"><span style="color:var(--gold);font-family:var(--font-mono);font-size:11px;margin-top:1px">✓</span><span style="font-size:13px;color:var(--text-2)">Business Analytics Simulation — Enparadigm</span></div>
-          <div style="margin-top:6px;padding-top:10px;border-top:1px solid var(--border);font-size:11px;color:var(--text-3);line-height:1.6">Coursework: Derivatives · Risk Mgmt · Fixed Income · Advanced Financial Analytics · Statistical Modeling</div>
+      <div class="ai-right fade-up">
+        <div class="chat-box">
+          <div class="chat-header">
+            <div class="chat-dot"></div>
+            <div class="chat-header-title">Shadow AI · Online · Trained on Rohith's Portfolio</div>
+          </div>
+          <div class="chat-messages" id="chat-messages">
+            <div class="msg ai">
+              <div class="msg-bubble">Hello! I'm Shadow AI, trained exclusively on Rohith Ravindra Reddy's portfolio. I can tell you about his 18 projects, quantitative results (like a McFadden R² of 0.50), education, experience, and how he might fit your team. What would you like to know?</div>
+              <div class="msg-time">Shadow AI</div>
+            </div>
+          </div>
+          <div class="chat-input-row">
+            <input type="text" id="chat-input" placeholder="Ask about Rohith's projects, skills, or background..." onkeydown="if(event.key==='Enter')sendMessage()">
+            <button id="chat-send" onclick="sendMessage()">Send</button>
+          </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="sec-label">Say Hello</div>
-    <div class="sec-title">Let's connect</div>
-    <div class="contact-layout">
-      <div class="contact-intro">
-        <p>I'm actively looking for full-time roles in quantitative finance, financial analytics, and data-driven investment research. If my work is relevant to what you're building — or if you'd just like to talk finance — reach out.</p>
-        <p>I'm based in Richmond, VA and open to relocation.</p>
-        <a href="mailto:ravindra.rohith@gmail.com" class="btn-main" style="display:inline-block;margin-top:0.8rem">Send me a message</a>
+<!-- CONTACT -->
+<section id="contact" class="sec sec-ivory">
+  <div class="max-w">
+    <div class="sec-label">Get In Touch</div>
+    <div class="sec-title fade-up">Let's build something<br>meaningful together.</div>
+    <div class="contact-grid">
+      <div class="fade-up">
+        <p style="color:var(--text-2);line-height:1.85;margin-bottom:2rem;font-weight:300">I'm actively seeking full-time roles in quantitative finance, financial analytics, and data-driven investment management. If my work is relevant to what you're building — or if you'd just like to talk finance — reach out.</p>
+        <div class="contact-form">
+          <div class="form-field"><label class="form-label">Name</label><input type="text" class="form-input" placeholder="Your full name"></div>
+          <div class="form-field"><label class="form-label">Email</label><input type="email" class="form-input" placeholder="your@email.com"></div>
+          <div class="form-field"><label class="form-label">Company / Role (optional)</label><input type="text" class="form-input" placeholder="e.g. Quant Analyst at XYZ Fund"></div>
+          <div class="form-field"><label class="form-label">Message</label><textarea class="form-input" placeholder="What would you like to discuss?"></textarea></div>
+          <button class="btn-gold" style="align-self:flex-start" onclick="alert('Thank you! Please email directly: ravindra.rohith@gmail.com')">Send Message</button>
+        </div>
       </div>
-      <div class="contact-cards">
-        <a href="mailto:ravindra.rohith@gmail.com" class="contact-card">
-          <div class="contact-icon">@</div>
-          <div><div class="contact-label">Email</div><div class="contact-val">ravindra.rohith@gmail.com</div></div>
-        </a>
-        <a href="https://linkedin.com/in/rohith-ravindra-reddy" target="_blank" class="contact-card">
-          <div class="contact-icon">in</div>
-          <div><div class="contact-label">LinkedIn</div><div class="contact-val">rohith-ravindra-reddy</div></div>
-        </a>
-        <a href="https://github.com/Rohith7022" target="_blank" class="contact-card">
-          <div class="contact-icon">gh</div>
-          <div><div class="contact-label">GitHub</div><div class="contact-val">Rohith7022 · 18 projects</div></div>
-        </a>
+      <div class="contact-direct fade-up">
+        <a href="mailto:ravindra.rohith@gmail.com" class="contact-link-card"><div class="clc-icon">@</div><div><div class="clc-label">Email</div><div class="clc-val">ravindra.rohith@gmail.com</div></div></a>
+        <a href="https://linkedin.com/in/rohith-ravindra-reddy" target="_blank" class="contact-link-card"><div class="clc-icon">in</div><div><div class="clc-label">LinkedIn</div><div class="clc-val">rohith-ravindra-reddy</div></div></a>
+        <a href="https://github.com/Rohith7022" target="_blank" class="contact-link-card"><div class="clc-icon">gh</div><div><div class="clc-label">GitHub</div><div class="clc-val">Rohith7022 · 18 repositories</div></div></a>
+        <a href="https://rohith7022.github.io" target="_blank" class="contact-link-card"><div class="clc-icon">🌐</div><div><div class="clc-label">Portfolio</div><div class="clc-val">rohith7022.github.io</div></div></a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer>
-    <div class="footer-name">Rohith Ravindra Reddy</div>
-    <div>MS Financial Analytics · Virginia Commonwealth University</div>
-  </footer>
-
-</main>
+<footer>
+  <div class="footer-name">Rohith Ravindra <span>Reddy</span></div>
+  <div class="footer-links">
+    <a href="mailto:ravindra.rohith@gmail.com">Email</a>
+    <a href="https://linkedin.com/in/rohith-ravindra-reddy" target="_blank">LinkedIn</a>
+    <a href="https://github.com/Rohith7022" target="_blank">GitHub</a>
+  </div>
+  <div class="footer-copy">Finance · Analytics · Quantitative Research · AI · Richmond, VA</div>
+</footer>
 
 <script>
-// ── SCROLL SPY ──────────────────────────────────────────
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('#sidebar-nav a');
+// ── CANVAS HERO ANIMATION ─────────────────────────────────────────
+const canvas = document.getElementById('hero-canvas');
+const ctx = canvas.getContext('2d');
+let W, H, particles = [];
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      navLinks.forEach(l => l.classList.remove('active'));
-      const active = document.querySelector(`#sidebar-nav a[href="#${e.target.id}"]`);
-      if (active) active.classList.add('active');
-    }
+function resizeCanvas(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
+resizeCanvas();
+window.addEventListener('resize',resizeCanvas);
+
+const SYMBOLS = ['0.47','1.04M','β','σ','R²','8.41%','0.507','Σ','μ','∂','3.80','SMB','HML','MOM','VaR'];
+for(let i=0;i<40;i++){
+  particles.push({
+    x:Math.random()*1600,y:Math.random()*900,
+    vx:(Math.random()-0.5)*0.3,vy:(Math.random()-0.5)*0.2,
+    text:SYMBOLS[Math.floor(Math.random()*SYMBOLS.length)],
+    opacity:Math.random()*0.25+0.05,
+    size:Math.random()*11+8
   });
-}, { threshold: 0.35 });
+}
 
-sections.forEach(s => observer.observe(s));
-
-// close sidebar on nav click (mobile)
-navLinks.forEach(l => l.addEventListener('click', () => {
-  document.querySelector('.sidebar').classList.remove('open');
-}));
-
-// ── FADE-UP ANIMATIONS ───────────────────────────────────
-const fadeEls = document.querySelectorAll('.fade-up');
-const fadeObs = new IntersectionObserver((entries) => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('visible'), i * 60);
-      fadeObs.unobserve(e.target);
-    }
+function drawCanvas(){
+  ctx.clearRect(0,0,W,H);
+  ctx.font='bold 14px "Space Mono", monospace';
+  particles.forEach(p=>{
+    p.x+=p.vx;p.y+=p.vy;
+    if(p.x<-100)p.x=W+50;if(p.x>W+100)p.x=-50;
+    if(p.y<-50)p.y=H+20;if(p.y>H+50)p.y=-20;
+    ctx.globalAlpha=p.opacity;
+    ctx.fillStyle='#D4AF37';
+    ctx.font=`${p.size}px "Space Mono",monospace`;
+    ctx.fillText(p.text,p.x,p.y);
   });
-}, { threshold: 0.1 });
-fadeEls.forEach(el => fadeObs.observe(el));
+  ctx.globalAlpha=1;
+  requestAnimationFrame(drawCanvas);
+}
+drawCanvas();
 
-// ── SKILL BAR ANIMATIONS ─────────────────────────────────
-const skillFills = document.querySelectorAll('.skill-bar-fill');
-const skillObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      const fills = e.target.querySelectorAll('.skill-bar-fill');
-      fills.forEach((f, i) => {
-        setTimeout(() => { f.style.width = f.dataset.w + '%'; }, i * 80);
-      });
-      skillObs.unobserve(e.target);
-    }
+// ── NAV SCROLL ───────────────────────────────────────────────────
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50);
+});
+
+// ── COUNTER ANIMATION ────────────────────────────────────────────
+function animateCounters(){
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const target=parseFloat(el.dataset.count),suffix=el.dataset.suffix||'';
+    const isFloat=target%1!==0,start=Date.now(),dur=2000;
+    const tick=()=>{
+      const p=Math.min((Date.now()-start)/dur,1),v=p*target;
+      el.textContent=(isFloat?v.toFixed(2):Math.round(v))+suffix;
+      if(p<1)requestAnimationFrame(tick);
+    };
+    tick();
   });
-}, { threshold: 0.3 });
-document.querySelectorAll('.skill-group').forEach(g => skillObs.observe(g));
+}
+const heroObs=new IntersectionObserver(e=>{if(e[0].isIntersecting){animateCounters();heroObs.disconnect()}},{threshold:0.5});
+heroObs.observe(document.getElementById('hero'));
+
+// ── FADE UP ──────────────────────────────────────────────────────
+const fadeObs=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*80);fadeObs.unobserve(e.target)}});
+},{threshold:0.08});
+document.querySelectorAll('.fade-up').forEach(el=>fadeObs.observe(el));
+
+// ── EXPERTISE TABS ───────────────────────────────────────────────
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.expertise-panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ── PROJECT FILTER ───────────────────────────────────────────────
+let showAll=false;
+document.querySelectorAll('.pf-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.pf-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const f=btn.dataset.filter;
+    document.querySelectorAll('.proj-card').forEach(card=>{
+      const match=f==='all'||card.dataset.tag===f;
+      const hidden=card.classList.contains('proj-hidden')&&!showAll;
+      card.style.display=(match&&!hidden)||showAll&&match?'flex':'none';
+    });
+  });
+});
+
+document.getElementById('show-more-btn').addEventListener('click',function(){
+  showAll=!showAll;
+  document.querySelectorAll('.proj-hidden').forEach(c=>{c.style.display=showAll?'flex':'none'});
+  this.textContent=showAll?'Show Less ↑':'Show All 18 Projects ↓';
+});
+
+// ── SHADOW AI ────────────────────────────────────────────────────
+const SYSTEM_PROMPT=`You are Shadow AI, the intelligent portfolio assistant for Rohith Ravindra Reddy.
+You ONLY answer questions about Rohith using the information below. Keep responses concise (2-4 sentences) and professional unless more detail is requested.
+If asked about anything outside this knowledge base, respond: "I am Shadow AI, trained specifically on Rohith's professional portfolio. I can assist with questions about his academics, projects, experience, research interests, and contact details."
+
+PERSONAL: Full Name: Rohith Ravindra Reddy | Location: Richmond, Virginia, USA | Email: ravindra.rohith@gmail.com | LinkedIn: linkedin.com/in/rohith-ravindra-reddy | GitHub: github.com/Rohith7022 (18 repos) | Portfolio: rohith7022.github.io
+
+EDUCATION: ICSE: St. John's High School 81.14% | PUC Science: Vikas PU College 93.33% (CET Eng 3111, Med 2629) | B.E. Mechanical Engineering: Ramaiah Institute of Technology CGPA 8.17 | MBA Finance: Christ University GPA 3.44/4.0 | MS Business (Financial Analytics): VCU GPA 3.80/4.0 - courses: FIRE 691, FIRE 540, Derivatives, Risk Management, Fixed Income, Statistical Modeling
+
+WORK EXPERIENCE: Sales & Transit Coordinator at L A Aggregates and Granite Traders (Mar 2021–Feb 2022): sales ops, logistics, vendor coordination, transit management | Intern at Elemental Fixtures Pvt Ltd (May–Jun 2024): business analytics, process evaluation, financial reporting
+
+KEY RESULTS: Return Predictability: 5-yr R²=8.41%(annual) 7.55%(monthly) | FF1992: 1.04M observations | Momentum Sharpe: 0.507, annualized 7.00% | NLP Jump model: McFadden R²=0.50 from 48 SEC 8-K filings | Active Share: QQQ 62.88% avg vs SPY (108 months) | Forecasting: 85% variance, RMSE<2.5% | Professor's Showcase: FIRE 540 Fall 2025
+
+18 PROJECTS: (1) Fama-French Replication R (Professor's showcase, FF3/FF5 1204 months) (2) Return Predictability Python (d/p ratio, CRSP 1927-2024) (3) FF1992 Cross-Section Python (1.04M obs, Fama-MacBeth) (4) Carhart Momentum Python (Sharpe 0.507) (5) ARK ETF Analysis Python (ARKK ARKW ARKG ARKQ ARKF) (6) Mutual Fund Performance Python (CRSP 2005-2025 rolling 36mo) (7) Stock Price Jumps NLP Python (BRK.B, 48 8-K, McFadden 0.50) (8) Active Share Brinson Python (QQQ vs SPY 62.88%) (9) Stock Analyzer App Streamlit (GARCH VaR live) (10) Portfolio Optimization Python (Markowitz 10k MC) (11) Financial TS Forecasting Python (85% variance) (12) DuPont Analysis R (3-part ETL) (13) Forensic Analysis R (Deloitte fraud case) (14) FF Funds R (attribution) (15) Holdings Over Time R (allocation drift) (16) Portfolio Optimization R (EDHEC + LP) (17) Time Series Properties Python (ARIMA OOS R²) (18) FF3 FF4 Construction Python (1.04M obs SMB HML MOM)
+
+SKILLS: Python(expert) R(advanced) SQL(intermediate) | pandas numpy statsmodels arch scipy yfinance Streamlit plotly matplotlib BeautifulSoup | tidyverse PerformanceAnalytics broom strucchange Quarto lpSolve | Bloomberg Terminal WRDS CRSP Compustat Excel Power BI Tableau
+
+CERTIFICATIONS: Advanced Excel (Microsoft), Power BI (Microsoft), Business Analytics Simulation (Enparadigm)
+ACHIEVEMENTS: Professor's Showcase FIRE 540 VCU | 1st Place Football Christ University ALTIUS | 3rd Place Cricket Christ University ALTIUS
+RESEARCH INTERESTS: Weather Derivatives, Volatility Derivatives, ML in Asset Pricing, FX Arbitrage, Portfolio Insurance, Options Pricing, NLP in Finance, Return Predictability, Factor Investing`;
+
+let chatHistory=[];
+
+async function callShadowAI(userMsg){
+  chatHistory.push({role:'user',content:userMsg});
+  const res=await fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1000,system:SYSTEM_PROMPT,messages:chatHistory})
+  });
+  const data=await res.json();
+  const reply=data.content&&data.content[0]?data.content[0].text:'I apologize, I\'m having trouble connecting right now. Please email Rohith directly at ravindra.rohith@gmail.com';
+  chatHistory.push({role:'assistant',content:reply});
+  return reply;
+}
+
+function addMessage(text,role){
+  const msgs=document.getElementById('chat-messages');
+  const el=document.createElement('div');
+  el.className='msg '+role;
+  const now=new Date();
+  el.innerHTML=`<div class="msg-bubble">${text}</div><div class="msg-time">${role==='user'?'You':'Shadow AI'} · ${now.getHours()}:${String(now.getMinutes()).padStart(2,'0')}</div>`;
+  msgs.appendChild(el);
+  msgs.scrollTop=msgs.scrollHeight;
+  return el;
+}
+
+function addTyping(){
+  const msgs=document.getElementById('chat-messages');
+  const el=document.createElement('div');
+  el.className='msg ai';el.id='typing';
+  el.innerHTML='<div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
+  msgs.appendChild(el);msgs.scrollTop=msgs.scrollHeight;
+}
+
+async function sendMessage(){
+  const input=document.getElementById('chat-input');
+  const text=input.value.trim();
+  if(!text)return;
+  input.value='';
+  const btn=document.getElementById('chat-send');
+  btn.disabled=true;
+  addMessage(text,'user');
+  addTyping();
+  try{
+    const reply=await callShadowAI(text);
+    document.getElementById('typing')?.remove();
+    addMessage(reply,'ai');
+  }catch(e){
+    document.getElementById('typing')?.remove();
+    addMessage('Shadow AI is currently offline. Please email Rohith directly at ravindra.rohith@gmail.com','ai');
+  }
+  btn.disabled=false;
+  input.focus();
+}
+
+function sendChip(el){
+  document.getElementById('chat-input').value=el.textContent;
+  sendMessage();
+}
 </script>
 </body>
 </html>
