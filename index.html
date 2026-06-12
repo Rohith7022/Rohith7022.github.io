@@ -144,6 +144,11 @@ footer{border-top:1px solid var(--border);padding:2rem 5%;display:flex;align-ite
   .projects-grid{grid-template-columns:1fr}
   footer{flex-direction:column;gap:8px;text-align:center}
 }
+
+.featured-card{border-color:rgba(240,165,0,0.35);background:linear-gradient(135deg,#112236 0%,#1a2e1a 100%)}
+.featured-card::before{background:linear-gradient(90deg,var(--gold),var(--teal));opacity:1}
+.professor-badge{color:var(--gold);font-size:11px}
+
 </style>
 </head>
 <body>
@@ -209,7 +214,7 @@ footer{border-top:1px solid var(--border);padding:2rem 5%;display:flex;align-ite
 <!-- STATS BAR -->
 <div class="stats-bar">
   <div class="stat-item">
-    <div class="stat-number">7</div>
+    <div class="stat-number">13</div>
     <div class="stat-label">Projects</div>
   </div>
   <div class="stat-item">
@@ -396,6 +401,92 @@ footer{border-top:1px solid var(--border);padding:2rem 5%;display:flex;align-ite
       <a href="https://github.com/Rohith7022/mutual-fund-performance-analysis" target="_blank" class="project-link">View on GitHub</a>
     </div>
 
+
+    <div class="project-card featured-card">
+      <div class="project-badge professor-badge">★ Professor's Showcase Project</div>
+      <h3>Fama-French Factor Replication &amp; Risk Extensions</h3>
+      <p>Selected by Prof. Larry Tentor as an example for future students — the highest course recognition. Full FF3/FF5 factor replication across 1,204 months (1926–2025), structural break testing, and CAPM risk extensions in R with a reproducible Quarto report.</p>
+      <div class="project-tags">
+        <span class="project-tag">R</span>
+        <span class="project-tag">Quarto</span>
+        <span class="project-tag">tidyverse</span>
+        <span class="project-tag">PerformanceAnalytics</span>
+        <span class="project-tag">FF3 / FF5</span>
+        <span class="project-tag">strucchange</span>
+      </div>
+      <a href="https://github.com/Rohith7022/fama-french-replication-r" target="_blank" class="project-link">View on GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-badge">VCU · FIRE 540</div>
+      <h3>DuPont Analysis – Three-Part Financial Study</h3>
+      <p>End-to-end DuPont decomposition for investor decision-making: question formulation, full ETL pipeline from raw financial statements, and applied regression and visualization to rank companies and industries by ROE decomposition.</p>
+      <div class="project-tags">
+        <span class="project-tag">R</span>
+        <span class="project-tag">tidyverse</span>
+        <span class="project-tag">ggplot2</span>
+        <span class="project-tag">ETL</span>
+        <span class="project-tag">DuPont</span>
+        <span class="project-tag">ROE</span>
+      </div>
+      <a href="https://github.com/Rohith7022/dupont-analysis-r" target="_blank" class="project-link">View on GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-badge">VCU · FIRE 540 · Deloitte Case</div>
+      <h3>Forensic Financial Analysis – Sales Commission Fraud</h3>
+      <p>Data-driven fraud investigation on the Deloitte Bags Medical Devices case. Applied statistical pattern detection to commission records and cross-referenced with stakeholder interview evidence to surface and visualize the fraud signal.</p>
+      <div class="project-tags">
+        <span class="project-tag">R</span>
+        <span class="project-tag">tidyverse</span>
+        <span class="project-tag">Forensic Analytics</span>
+        <span class="project-tag">ggplot2</span>
+        <span class="project-tag">Fraud Detection</span>
+      </div>
+      <a href="https://github.com/Rohith7022/forensic-financial-analysis" target="_blank" class="project-link">View on GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-badge">VCU · FIRE 540</div>
+      <h3>Portfolio Holdings Over Time</h3>
+      <p>Tracked and visualized how fund asset allocations shift across sectors and asset classes over multiple reporting periods — revealing concentration risk, passive drift, and active rebalancing signals in R.</p>
+      <div class="project-tags">
+        <span class="project-tag">R</span>
+        <span class="project-tag">tidyverse</span>
+        <span class="project-tag">ggplot2</span>
+        <span class="project-tag">Portfolio Analysis</span>
+        <span class="project-tag">Asset Allocation</span>
+      </div>
+      <a href="https://github.com/Rohith7022/portfolio-holdings-over-time" target="_blank" class="project-link">View on GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-badge">VCU · FIRE 540</div>
+      <h3>Fama-French Funds Performance Attribution</h3>
+      <p>Factor exposure and return attribution analysis for investment funds using the Fama-French framework. Decomposed fund returns into market, size, and value components to isolate true alpha from systematic risk compensation.</p>
+      <div class="project-tags">
+        <span class="project-tag">R</span>
+        <span class="project-tag">Fama-French</span>
+        <span class="project-tag">broom</span>
+        <span class="project-tag">OLS Regression</span>
+        <span class="project-tag">Alpha</span>
+      </div>
+      <a href="https://github.com/Rohith7022/fama-french-funds-r" target="_blank" class="project-link">View on GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-badge">VCU · FIRE 540</div>
+      <h3>Portfolio Optimization in R – EDHEC &amp; Linear Programming</h3>
+      <p>Minimum variance portfolio construction using EDHEC hedge fund strategy returns (Convertible Arbitrage, CTA Global, Distressed Securities, Emerging Markets), plus a linear programming resource allocation problem solved from first principles.</p>
+      <div class="project-tags">
+        <span class="project-tag">R</span>
+        <span class="project-tag">tidyquant</span>
+        <span class="project-tag">Quadratic Programming</span>
+        <span class="project-tag">Linear Programming</span>
+        <span class="project-tag">EDHEC</span>
+      </div>
+      <a href="https://github.com/Rohith7022/portfolio-optimization-r" target="_blank" class="project-link">View on GitHub</a>
+    </div>
   </div>
 </section>
 
